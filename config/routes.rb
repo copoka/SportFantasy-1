@@ -1,4 +1,6 @@
 SportFantasy::Application.routes.draw do
+  resources :real_teams
+
   resources :ampluas
 
   resources :user_teams

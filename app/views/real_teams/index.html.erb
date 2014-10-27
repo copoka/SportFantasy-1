@@ -1,0 +1,27 @@
+<h1>Listing real_teams</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @real_teams.each do |real_team| %>
+      <tr>
+        <td><%= real_team.name %></td>
+        <td><%= link_to 'Show', real_team %></td>
+        <td><%= link_to 'Edit', edit_real_team_path(real_team) %></td>
+        <td><%= link_to 'Destroy', real_team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Real team', new_real_team_path %>
