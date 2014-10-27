@@ -1,0 +1,27 @@
+<h1>Listing ampluas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ampluas.each do |amplua| %>
+      <tr>
+        <td><%= amplua.name %></td>
+        <td><%= link_to 'Show', amplua %></td>
+        <td><%= link_to 'Edit', edit_amplua_path(amplua) %></td>
+        <td><%= link_to 'Destroy', amplua, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Amplua', new_amplua_path %>
