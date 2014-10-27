@@ -1,7 +1,7 @@
 class CreateUserTeams < ActiveRecord::Migration
   def change
     create_table :user_teams do |t|
-      t.reference :user
+      t.belongs_to :user
       t.string :name
       t.integer :score
 

@@ -2,8 +2,8 @@ class CreatePlayers < ActiveRecord::Migration
   def change
     create_table :players do |t|
       t.string :name
-      t.reference :real_team
-      t.reference :amplua
+      t.belongs_to :real_team
+      t.belongs_to :amplua
       t.float :price
       t.integer :score
 
