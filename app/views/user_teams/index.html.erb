@@ -1,0 +1,31 @@
+<h1>Listing user_teams</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Name</th>
+      <th>Score</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_teams.each do |user_team| %>
+      <tr>
+        <td><%= user_team.user %></td>
+        <td><%= user_team.name %></td>
+        <td><%= user_team.score %></td>
+        <td><%= link_to 'Show', user_team %></td>
+        <td><%= link_to 'Edit', edit_user_team_path(user_team) %></td>
+        <td><%= link_to 'Destroy', user_team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User team', new_user_team_path %>
