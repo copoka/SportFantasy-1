@@ -1,0 +1,3 @@
+Amplua.delete_all
+RealTeam.delete_all
+Player.delete_all
