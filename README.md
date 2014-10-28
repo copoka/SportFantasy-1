@@ -14,4 +14,4 @@ http://goo.gl/4yWfPv - эскиз ДБ на MySQL
 
 * Чтобы перенести схему БД в СУБД, надо выполнить rake db:migrate
 * Чтобы заполнить БД фейковыми данными, надо выполнить rake db:seed:sample_data
-* Чтобы удалить данные из всех таблиц: rake db:seed:clear_all_tables
++ Чтобы удалить данные из всех таблиц: rake db:seed:clear_all_tables
