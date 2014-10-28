@@ -1,3 +1,6 @@
 Amplua.delete_all
 RealTeam.delete_all
 Player.delete_all
+User.delete_all
+UserTeam.delete_all
+UserTeamPlayer.delete_all

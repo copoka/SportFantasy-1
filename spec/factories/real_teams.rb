@@ -2,7 +2,7 @@ require 'faker'
 
 FactoryGirl.define do
   factory :real_team do
-    name {Faker::Lorem.word}
+    name {Faker::Company.name}
 
     factory :real_team_with_players do
       transient do

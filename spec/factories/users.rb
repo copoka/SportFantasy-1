@@ -9,15 +9,15 @@ FactoryGirl.define do
         teams_count 2
       end
       after(:create) do |user, evaluator|
-        create_list(:user_team, evaluator.teamz_count, user: user)
+        create_list(:user_team, evaluator.teams_count, user: user)
       end
-      #TODO make it done
+
       factory :user_with_teams_and_players do
         transient do
-          players_count 2
+          players_count 10
         end
         after(:create) do |user, evaluator|
-          create_list(:user_team, evaluator.players_count, user: user)
+          create_list(:user_teams_with_players, evaluator.players_count, user: user)
         end
       end
     end
