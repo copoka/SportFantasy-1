@@ -61,20 +61,6 @@ class PlayersController < ApplicationController
     end
   end
 
-  @past_score[]                                                              # массив очков из n(3-4) прошлых сезонов
-  def calculate_price()
-    @ME
-    @i = 0
-    while i < @past_score.size do
-      @ME += past_score[i]*(1/@past_score.size)
-      @i += 1
-    end
-
-    @price = 10000000 + ( @ME * 50000 ).to_i
-
-    return @price
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_player
