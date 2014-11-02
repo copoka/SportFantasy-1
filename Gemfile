@@ -57,3 +57,7 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Sphinx
+gem 'mysql2',          '0.3.12b5', :platform => :ruby
+gem 'thinking-sphinx', '~> 3.1.0'
