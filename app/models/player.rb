@@ -3,4 +3,5 @@ class Player < ActiveRecord::Base
   belongs_to :amplua
   has_many :user_team_players
   has_many :user_teams, through: :user_team_players
+  has_many :perfomances
 end

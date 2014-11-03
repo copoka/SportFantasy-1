@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Player:</strong>
+  <%= @performance.player_id %>
+</p>
+
+<p>
+  <strong>Real team:</strong>
+  <%= @performance.real_team_id %>
+</p>
+
+<p>
+  <strong>Amplua:</strong>
+  <%= @performance.amplua_id %>
+</p>
+
+<p>
+  <strong>For playing up to 60 minutes:</strong>
+  <%= @performance.for_playing_up_to_60_minutes %>
+</p>
+
+<p>
+  <strong>For playing 60 minutes or more:</strong>
+  <%= @performance.for_playing_60_minutes_or_more %>
+</p>
+
+<p>
+  <strong>Goals:</strong>
+  <%= @performance.goals %>
+</p>
+
+<p>
+  <strong>Assists:</strong>
+  <%= @performance.assists %>
+</p>
+
+<p>
+  <strong>Three saves gk:</strong>
+  <%= @performance.three_saves_gk %>
+</p>
+
+<p>
+  <strong>Penalty save gk:</strong>
+  <%= @performance.penalty_save_gk %>
+</p>
+
+<p>
+  <strong>Penalty miss:</strong>
+  <%= @performance.penalty_miss %>
+</p>
+
+<p>
+  <strong>Clean sheet:</strong>
+  <%= @performance.clean_sheet %>
+</p>
+
+<p>
+  <strong>Mvps:</strong>
+  <%= @performance.mvps %>
+</p>
+
+<p>
+  <strong>Every two goals df gk:</strong>
+  <%= @performance.every_two_goals_df_gk %>
+</p>
+
+<p>
+  <strong>Yellow cards:</strong>
+  <%= @performance.yellow_cards %>
+</p>
+
+<p>
+  <strong>Red cards:</strong>
+  <%= @performance.red_cards %>
+</p>
+
+<p>
+  <strong>Self goals:</strong>
+  <%= @performance.self_goals %>
+</p>
+
+<%= link_to 'Edit', edit_performance_path(@performance) %> |
+<%= link_to 'Back', performances_path %>

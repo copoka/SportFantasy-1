@@ -1,0 +1,57 @@
+<h1>Listing performances</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Real team</th>
+      <th>Amplua</th>
+      <th>For playing up to 60 minutes</th>
+      <th>For playing 60 minutes or more</th>
+      <th>Goals</th>
+      <th>Assists</th>
+      <th>Three saves gk</th>
+      <th>Penalty save gk</th>
+      <th>Penalty miss</th>
+      <th>Clean sheet</th>
+      <th>Mvps</th>
+      <th>Every two goals df gk</th>
+      <th>Yellow cards</th>
+      <th>Red cards</th>
+      <th>Self goals</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @performances.each do |performance| %>
+      <tr>
+        <td><%= performance.player_id %></td>
+        <td><%= performance.real_team_id %></td>
+        <td><%= performance.amplua_id %></td>
+        <td><%= performance.for_playing_up_to_60_minutes %></td>
+        <td><%= performance.for_playing_60_minutes_or_more %></td>
+        <td><%= performance.goals %></td>
+        <td><%= performance.assists %></td>
+        <td><%= performance.three_saves_gk %></td>
+        <td><%= performance.penalty_save_gk %></td>
+        <td><%= performance.penalty_miss %></td>
+        <td><%= performance.clean_sheet %></td>
+        <td><%= performance.mvps %></td>
+        <td><%= performance.every_two_goals_df_gk %></td>
+        <td><%= performance.yellow_cards %></td>
+        <td><%= performance.red_cards %></td>
+        <td><%= performance.self_goals %></td>
+        <td><%= link_to 'Show', performance %></td>
+        <td><%= link_to 'Edit', edit_performance_path(performance) %></td>
+        <td><%= link_to 'Destroy', performance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Performance', new_performance_path %>

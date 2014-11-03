@@ -1,0 +1,81 @@
+<%= form_for(@performance) do |f| %>
+  <% if @performance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@performance.errors.count, "error") %> prohibited this performance from being saved:</h2>
+
+      <ul>
+      <% @performance.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :player_id %><br>
+    <%= f.number_field :player_id %>
+  </div>
+  <div class="field">
+    <%= f.label :real_team_id %><br>
+    <%= f.number_field :real_team_id %>
+  </div>
+  <div class="field">
+    <%= f.label :amplua_id %><br>
+    <%= f.number_field :amplua_id %>
+  </div>
+  <div class="field">
+    <%= f.label :for_playing_up_to_60_minutes %><br>
+    <%= f.number_field :for_playing_up_to_60_minutes %>
+  </div>
+  <div class="field">
+    <%= f.label :for_playing_60_minutes_or_more %><br>
+    <%= f.number_field :for_playing_60_minutes_or_more %>
+  </div>
+  <div class="field">
+    <%= f.label :goals %><br>
+    <%= f.number_field :goals %>
+  </div>
+  <div class="field">
+    <%= f.label :assists %><br>
+    <%= f.number_field :assists %>
+  </div>
+  <div class="field">
+    <%= f.label :three_saves_gk %><br>
+    <%= f.number_field :three_saves_gk %>
+  </div>
+  <div class="field">
+    <%= f.label :penalty_save_gk %><br>
+    <%= f.number_field :penalty_save_gk %>
+  </div>
+  <div class="field">
+    <%= f.label :penalty_miss %><br>
+    <%= f.number_field :penalty_miss %>
+  </div>
+  <div class="field">
+    <%= f.label :clean_sheet %><br>
+    <%= f.number_field :clean_sheet %>
+  </div>
+  <div class="field">
+    <%= f.label :mvps %><br>
+    <%= f.number_field :mvps %>
+  </div>
+  <div class="field">
+    <%= f.label :every_two_goals_df_gk %><br>
+    <%= f.number_field :every_two_goals_df_gk %>
+  </div>
+  <div class="field">
+    <%= f.label :yellow_cards %><br>
+    <%= f.number_field :yellow_cards %>
+  </div>
+  <div class="field">
+    <%= f.label :red_cards %><br>
+    <%= f.number_field :red_cards %>
+  </div>
+  <div class="field">
+    <%= f.label :self_goals %><br>
+    <%= f.number_field :self_goals %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
