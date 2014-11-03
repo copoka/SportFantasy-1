@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: user_teams
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  name       :string(255)
+#  score      :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 FactoryGirl.define do
   factory :user_team do
     name { Faker::Company.name }

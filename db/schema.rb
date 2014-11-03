@@ -11,13 +11,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027093512) do
+ActiveRecord::Schema.define(version: 20141103163049) do
 
   create_table "ampluas", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "matches", force: true do |t|
+    t.integer  "team_home_id"
+    t.integer  "team_away_id"
+    t.integer  "team_home_score"
+    t.integer  "team_away_score"
+    t.text     "highlights"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "matches", ["team_away_id"], name: "index_matches_on_team_away_id", using: :btree
+  add_index "matches", ["team_home_id"], name: "index_matches_on_team_home_id", using: :btree
+
+  create_table "performances", force: true do |t|
+    t.integer  "player_id"
+    t.integer  "real_team_id"
+    t.integer  "amplua_id"
+    t.integer  "for_playing_up_to_60_minutes"
+    t.integer  "for_playing_60_minutes_or_more"
+    t.integer  "goals"
+    t.integer  "assists"
+    t.integer  "three_saves_gk"
+    t.integer  "penalty_save_gk"
+    t.integer  "penalty_miss"
+    t.integer  "clean_sheet"
+    t.integer  "mvps"
+    t.integer  "every_two_goals_df_gk"
+    t.integer  "yellow_cards"
+    t.integer  "red_cards"
+    t.integer  "self_goals"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "performances", ["amplua_id"], name: "index_performances_on_amplua_id", using: :btree
+  add_index "performances", ["player_id"], name: "index_performances_on_player_id", using: :btree
+  add_index "performances", ["real_team_id"], name: "index_performances_on_real_team_id", using: :btree
 
   create_table "players", force: true do |t|
     t.string   "name"
@@ -27,6 +65,10 @@ ActiveRecord::Schema.define(version: 20141027093512) do
     t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "past_score_1", default: 0
+    t.integer  "past_score_2", default: 0
+    t.integer  "past_score_3", default: 0
+    t.integer  "past_score_4", default: 0
   end
 
   add_index "players", ["amplua_id"], name: "index_players_on_amplua_id", using: :btree
@@ -37,6 +79,27 @@ ActiveRecord::Schema.define(version: 20141027093512) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "total_performances", force: true do |t|
+    t.integer  "player_id"
+    t.integer  "for_playing_up_to_60_minutes"
+    t.integer  "for_playing_60_minutes_or_more"
+    t.integer  "goals"
+    t.integer  "assists"
+    t.integer  "three_saves_gk"
+    t.integer  "penalty_save_gk"
+    t.integer  "penalty_miss"
+    t.integer  "clean_sheet"
+    t.integer  "mvps"
+    t.integer  "every_two_goals_df_gk"
+    t.integer  "yellow_cards"
+    t.integer  "red_cards"
+    t.integer  "self_goals"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "total_performances", ["player_id"], name: "index_total_performances_on_player_id", using: :btree
 
   create_table "user_team_players", force: true do |t|
     t.integer  "user_team_id"

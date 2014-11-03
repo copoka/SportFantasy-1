@@ -46,6 +46,8 @@ group :test do
   #gem "selenium-webdriver", '2.42.0'
 end
 
+gem 'annotate', '~> 2.6.5'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
