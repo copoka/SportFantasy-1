@@ -9,5 +9,8 @@ class CreateMatches < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :matches, :team_home_id
+    add_index :matches, :team_away_id
   end
 end

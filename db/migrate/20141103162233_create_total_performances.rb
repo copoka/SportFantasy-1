@@ -18,5 +18,7 @@ class CreateTotalPerformances < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :total_performances, :player_id
   end
 end

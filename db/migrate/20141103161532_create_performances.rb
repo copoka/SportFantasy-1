@@ -20,5 +20,9 @@ class CreatePerformances < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :performances, :player_id
+    add_index :performances, :real_team_id
+    add_index :performances, :amplua_id
   end
 end
