@@ -1,4 +1,6 @@
 SportFantasy::Application.routes.draw do
+  resources :total_performances
+
   resources :performances
 
   resources :matches
