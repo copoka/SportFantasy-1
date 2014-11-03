@@ -1,0 +1,53 @@
+<h1>Listing total_performances</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>For playing up to 60 minutes</th>
+      <th>For playing 60 minutes or more</th>
+      <th>Goals</th>
+      <th>Assists</th>
+      <th>Three saves gk</th>
+      <th>Penalty save gk</th>
+      <th>Penalty miss</th>
+      <th>Clean sheet</th>
+      <th>Mvps</th>
+      <th>Every two goals df gk</th>
+      <th>Yellow cards</th>
+      <th>Red cards</th>
+      <th>Self goals</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @total_performances.each do |total_performance| %>
+      <tr>
+        <td><%= total_performance.player_id %></td>
+        <td><%= total_performance.for_playing_up_to_60_minutes %></td>
+        <td><%= total_performance.for_playing_60_minutes_or_more %></td>
+        <td><%= total_performance.goals %></td>
+        <td><%= total_performance.assists %></td>
+        <td><%= total_performance.three_saves_gk %></td>
+        <td><%= total_performance.penalty_save_gk %></td>
+        <td><%= total_performance.penalty_miss %></td>
+        <td><%= total_performance.clean_sheet %></td>
+        <td><%= total_performance.mvps %></td>
+        <td><%= total_performance.every_two_goals_df_gk %></td>
+        <td><%= total_performance.yellow_cards %></td>
+        <td><%= total_performance.red_cards %></td>
+        <td><%= total_performance.self_goals %></td>
+        <td><%= link_to 'Show', total_performance %></td>
+        <td><%= link_to 'Edit', edit_total_performance_path(total_performance) %></td>
+        <td><%= link_to 'Destroy', total_performance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Total performance', new_total_performance_path %>
