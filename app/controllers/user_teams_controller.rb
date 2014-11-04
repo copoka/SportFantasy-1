@@ -1,5 +1,10 @@
 class UserTeamsController < ApplicationController
   before_action :set_user_team, only: [:show, :edit, :update, :destroy]
+  
+  #Sphinx
+  def search
+      @user_teams = UserTeam.search params[:search]
+  end
 
   # GET /user_teams
   # GET /user_teams.json

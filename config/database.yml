@@ -19,6 +19,7 @@ development:
   username: railsuser
   password: railspass
   host: localhost
+  bin_path: /usr/bin/sphinx-searchd
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

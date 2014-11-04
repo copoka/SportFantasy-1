@@ -1,8 +1,11 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
   
-  @players = Player.search params[:search]
-
+  #Sphinx
+  def search
+      @players = Player.search params[:search]
+  end
+  
   # GET /players
   # GET /players.json
   def index
