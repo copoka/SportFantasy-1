@@ -19,7 +19,17 @@
       <tr>
         <td><%= player.name %></td>
         <td><%= player.real_team_id %></td>
-        <td><%= player.amplua_id %></td>
+        <td><% case player.amplua_id
+               when 1 %>
+            Вратарь
+            <% when 2 %>
+            Защитник
+            <% when 3 %>
+            Полузащитник
+            <% when 4 %>
+            Нападающий
+            <% end %>
+        </td>
         <td><%= player.price %></td>
         <td><%= player.score %></td>
         <td><%= link_to 'Show', player %></td>
