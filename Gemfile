@@ -50,6 +50,8 @@ group :test do
   #gem "selenium-webdriver", '2.42.0'
 end
 
+gem 'annotate', '~> 2.6.5'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
@@ -61,3 +63,7 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Sphinx
+gem 'mysql2',          '0.3.12b5', :platform => :ruby
+gem 'thinking-sphinx', '~> 3.1.0'

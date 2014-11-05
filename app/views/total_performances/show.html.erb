@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Player:</strong>
+  <%= @total_performance.player_id %>
+</p>
+
+<p>
+  <strong>For playing up to 60 minutes:</strong>
+  <%= @total_performance.for_playing_up_to_60_minutes %>
+</p>
+
+<p>
+  <strong>For playing 60 minutes or more:</strong>
+  <%= @total_performance.for_playing_60_minutes_or_more %>
+</p>
+
+<p>
+  <strong>Goals:</strong>
+  <%= @total_performance.goals %>
+</p>
+
+<p>
+  <strong>Assists:</strong>
+  <%= @total_performance.assists %>
+</p>
+
+<p>
+  <strong>Three saves gk:</strong>
+  <%= @total_performance.three_saves_gk %>
+</p>
+
+<p>
+  <strong>Penalty save gk:</strong>
+  <%= @total_performance.penalty_save_gk %>
+</p>
+
+<p>
+  <strong>Penalty miss:</strong>
+  <%= @total_performance.penalty_miss %>
+</p>
+
+<p>
+  <strong>Clean sheet:</strong>
+  <%= @total_performance.clean_sheet %>
+</p>
+
+<p>
+  <strong>Mvps:</strong>
+  <%= @total_performance.mvps %>
+</p>
+
+<p>
+  <strong>Every two goals df gk:</strong>
+  <%= @total_performance.every_two_goals_df_gk %>
+</p>
+
+<p>
+  <strong>Yellow cards:</strong>
+  <%= @total_performance.yellow_cards %>
+</p>
+
+<p>
+  <strong>Red cards:</strong>
+  <%= @total_performance.red_cards %>
+</p>
+
+<p>
+  <strong>Self goals:</strong>
+  <%= @total_performance.self_goals %>
+</p>
+
+<%= link_to 'Edit', edit_total_performance_path(@total_performance) %> |
+<%= link_to 'Back', total_performances_path %>

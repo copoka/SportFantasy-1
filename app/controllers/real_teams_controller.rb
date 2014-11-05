@@ -1,5 +1,10 @@
 class RealTeamsController < ApplicationController
   before_action :set_real_team, only: [:show, :edit, :update, :destroy]
+  
+  #Sphinx
+  def search
+      @real_teams = RealTeam.search params[:search]
+  end
 
   # GET /real_teams
   # GET /real_teams.json
