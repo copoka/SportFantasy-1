@@ -2,7 +2,7 @@ sport_fantasy = angular.module('sport_fantasy', [
   'templates',
   'ngRoute',
 #  'ngResource',
-  'controllers',
+  'controllers'
 #  'angular-flash.service',
 #  'angular-flash.flash-alert-directive'
 ])
@@ -12,7 +12,7 @@ sport_fantasy.config([ '$routeProvider',
     $routeProvider
     .when('/players',
         templateUrl: "index.html"
-        controller: 'VoidController'
+        controller: 'PlayersController'
       )
     .when('/',
         templateUrl: "index.html"
