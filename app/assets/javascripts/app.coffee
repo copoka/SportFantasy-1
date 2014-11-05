@@ -1,19 +1,26 @@
-receta = angular.module('receta',[
+sport_fantasy = angular.module('sport_fantasy', [
   'templates',
   'ngRoute',
+#  'ngResource',
   'controllers',
+#  'angular-flash.service',
+#  'angular-flash.flash-alert-directive'
 ])
 
-receta.config([ '$routeProvider',
+sport_fantasy.config([ '$routeProvider',
   ($routeProvider)->
     $routeProvider
+    .when('/players',
+        templateUrl: "index.html"
+        controller: 'VoidController'
+      )
     .when('/',
         templateUrl: "index.html"
-        controller: 'RecipesController'
+        controller: 'VoidController'
       )
 ])
 
-controllers = angular.module('controllers',[])
-controllers.controller("RecipesController", [ '$scope',
+controllers = angular.module('controllers', [])
+controllers.controller("VoidController", [ '$scope',
   ($scope)->
 ])
