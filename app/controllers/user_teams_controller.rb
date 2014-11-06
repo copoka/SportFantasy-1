@@ -1,9 +1,9 @@
 class UserTeamsController < ApplicationController
   before_action :set_user_team, only: [:show, :edit, :update, :destroy]
-  
+
   #Sphinx
   def search
-      @user_teams = UserTeam.search params[:search]
+    @user_teams = UserTeam.search params[:search]
   end
 
   # GET /user_teams
@@ -66,14 +66,23 @@ class UserTeamsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user_team
-      @user_team = UserTeam.find(params[:id])
-    end
+  def add_player_to_user_team
+    @user_team = UserTeam.find(params[:user_team_id])
+    @user_team.players<<Player.find(params[:player_id])
+    #TODO сделать проверку тут или в модели user_team_players и при неудачном сохранении выводить ошибку
+    #render status: :ok
+    #render nothing: true, status: :not_acceptable
+    render nothing: true
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_team_params
-      params.require(:user_team).permit(:user, :name, :score)
-    end
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user_team
+    @user_team = UserTeam.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_team_params
+    params.require(:user_team).permit(:user, :name, :score)
+  end
 end

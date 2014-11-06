@@ -16,6 +16,8 @@ SportFantasy::Application.routes.draw do
   resources :users
   
   root to: 'home#index'
+
+  post '/user_team/add_player_to_user_team', to:  'user_teams#add_player_to_user_team'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
