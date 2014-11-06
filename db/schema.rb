@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20141103163049) do
     t.datetime "updated_at"
   end
 
-  add_index "matches", ["team_away_id"], name: "index_matches_on_team_away_id", using: :btree
-  add_index "matches", ["team_home_id"], name: "index_matches_on_team_home_id", using: :btree
+  add_index "matches", ["team_away_id"], name: "index_matches_on_team_away_id"
+  add_index "matches", ["team_home_id"], name: "index_matches_on_team_home_id"
 
   create_table "performances", force: true do |t|
     t.integer  "player_id"
@@ -53,9 +53,9 @@ ActiveRecord::Schema.define(version: 20141103163049) do
     t.datetime "updated_at"
   end
 
-  add_index "performances", ["amplua_id"], name: "index_performances_on_amplua_id", using: :btree
-  add_index "performances", ["player_id"], name: "index_performances_on_player_id", using: :btree
-  add_index "performances", ["real_team_id"], name: "index_performances_on_real_team_id", using: :btree
+  add_index "performances", ["amplua_id"], name: "index_performances_on_amplua_id"
+  add_index "performances", ["player_id"], name: "index_performances_on_player_id"
+  add_index "performances", ["real_team_id"], name: "index_performances_on_real_team_id"
 
   create_table "players", force: true do |t|
     t.string   "name"
@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 20141103163049) do
     t.integer  "past_score_4", default: 0
   end
 
-  add_index "players", ["amplua_id"], name: "index_players_on_amplua_id", using: :btree
-  add_index "players", ["real_team_id"], name: "index_players_on_real_team_id", using: :btree
+  add_index "players", ["amplua_id"], name: "index_players_on_amplua_id"
+  add_index "players", ["real_team_id"], name: "index_players_on_real_team_id"
 
   create_table "real_teams", force: true do |t|
     t.string   "name"
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20141103163049) do
     t.datetime "updated_at"
   end
 
-  add_index "total_performances", ["player_id"], name: "index_total_performances_on_player_id", using: :btree
+  add_index "total_performances", ["player_id"], name: "index_total_performances_on_player_id"
 
   create_table "user_team_players", force: true do |t|
     t.integer  "user_team_id"
@@ -108,8 +108,8 @@ ActiveRecord::Schema.define(version: 20141103163049) do
     t.datetime "updated_at"
   end
 
-  add_index "user_team_players", ["player_id"], name: "index_user_team_players_on_player_id", using: :btree
-  add_index "user_team_players", ["user_team_id"], name: "index_user_team_players_on_user_team_id", using: :btree
+  add_index "user_team_players", ["player_id"], name: "index_user_team_players_on_player_id"
+  add_index "user_team_players", ["user_team_id"], name: "index_user_team_players_on_user_team_id"
 
   create_table "user_teams", force: true do |t|
     t.integer  "user_id"
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 20141103163049) do
     t.datetime "updated_at"
   end
 
-  add_index "user_teams", ["user_id"], name: "index_user_teams_on_user_id", using: :btree
+  add_index "user_teams", ["user_id"], name: "index_user_teams_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"
