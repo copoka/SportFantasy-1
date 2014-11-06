@@ -9,6 +9,6 @@ ThinkingSphinx::Index.define :player, :with => :active_record do
     indexes amplua, :sortable => true
     
     has real_team(:name), as => :real_team_name
-    has amplua(:amplua), as => :amplua
+    has amplua(:name), as => :amplua
 end
 
