@@ -5,7 +5,7 @@
 ###
 
 ThinkingSphinx::Index.define :player, :with => :active_record do
-    indexes :name, :sortable => true
+    indexes :name, :as => player_name, :sortable => true
     indexes amplua, :sortable => true
     
     has real_team(:name), as => :real_team_name
