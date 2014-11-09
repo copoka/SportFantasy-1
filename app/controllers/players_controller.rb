@@ -3,8 +3,9 @@ class PlayersController < ApplicationController
   
   #Sphinx
   def search
-      @players = Player.search params[:search]
+      @search = Player.search params[:search]
   end
+
   
   # GET /players
   # GET /players.json

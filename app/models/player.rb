@@ -24,10 +24,4 @@ class Player < ActiveRecord::Base
 
   has_many :performances
   has_one :total_performance
-  
-  #  define_index do
-  # indexes :name, :sortable => true
-  # indexes :amplua, :sortable => true
-  # indexes :real_team, :sortable => true
-  #end
 end
