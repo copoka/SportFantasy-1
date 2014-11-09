@@ -18,4 +18,9 @@
 
 class Player < ActiveRecord::Base
 
+<<<<<<< HEAD
+=======
+  has_many :performances
+  has_one :total_performance
+>>>>>>> thinking-sphinx-set-up
 end
