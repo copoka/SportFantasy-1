@@ -31,3 +31,4 @@ mysql> GRANT ALL PRIVILEGES ON sport_fantasy_db.* TO 'railsuser'@'localhost' IDE
 * Чтобы перенести схему БД в СУБД, надо выполнить rake db:migrate
 * Чтобы заполнить БД фейковыми данными, надо выполнить rake db:seed:sample_data
 * Чтобы удалить данные из всех таблиц: rake db:seed:clear_all_tables
+* Чтобы включить поиск по БД через Sphinx, надо выполнить rake ts:index и rake ts:start (естественно, сфинкс должен стоять)
