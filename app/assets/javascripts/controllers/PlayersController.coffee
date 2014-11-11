@@ -7,11 +7,27 @@ controllers.controller("PlayersController", [ '$scope', '$routeParams', '$locati
     $scope.players = Player.query()
 
     User = $resource('/users/:userId', { userId: "@id", format: 'json' })
-#    $scope.current_user = User.query()[0]
-    $scope.current_user = null
-    $scope.$apply 'current_user'
-    $scope.users = User.query()
+    UserTeam = $resource('/user_teams/:user_team_Id.json', {user_team_Id: "@id"})
 
+    $scope.user_teams = UserTeam.query {user_id: 3}
+
+    #    $scope.current_user = User.query()[0]
+    #    $scope.current_user = null
+    #    $scope.$apply 'current_user'
+    $scope.users = User.query '', (resp)->
+      $scope.current_user = resp[0]
+
+
+    #    $scope.$watch 'current_user', ->
+    #      UserTeam.query {user_id: $scope.current_user.id}
+    #      , (resp)->
+    #        $scope.user_teams = resp
+
+    $scope.$watch 'current_user', ->
+      $scope.user_teams = UserTeam.query {user_id: $scope.current_user.id}
+
+    #      , (err)->
+    #err handle
 
     #    $scope.add_player_to_user_team = (player_id, user_team_id)->
     #      $location.path("/user_team/add_player_to_user_team")
