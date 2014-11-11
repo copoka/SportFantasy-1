@@ -4,11 +4,11 @@ controllers.controller("PlayersController", [ '$scope', '$routeParams', '$locati
 #    module.factory('User', ($resource)->
 #      $resource('/users/:id'))
     Player = $resource('/players/:playerId', { playerId: "@id", format: 'json' })
-    $scope.players = Player.query()
-
     User = $resource('/users/:userId', { userId: "@id", format: 'json' })
     UserTeam = $resource('/user_teams/:user_team_Id.json', {user_team_Id: "@id"})
+    UserTeamPlayer = $resource('/user_team_players/:user_team_player_Id.json', {user_team_player_Id: "@id"})
 
+    $scope.players = Player.query()
     $scope.user_teams = UserTeam.query {user_id: 3}
 
     #    $scope.current_user = User.query()[0]
@@ -23,8 +23,8 @@ controllers.controller("PlayersController", [ '$scope', '$routeParams', '$locati
     #      , (resp)->
     #        $scope.user_teams = resp
 
-    $scope.$watch 'current_user', ->
-      $scope.user_teams = UserTeam.query {user_id: $scope.current_user.id}
+    $scope.$watch 'current_team', ->
+      $scope.user_team_players = UserTeamPlayer.query {user_team_id: $scope.current_team.id}
 
     #      , (err)->
     #err handle
