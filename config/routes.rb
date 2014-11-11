@@ -14,6 +14,8 @@ SportFantasy::Application.routes.draw do
   resources :user_teams
 
   resources :users
+
+  resources :user_team_players
   
   root to: 'home#index'
 
