@@ -15,6 +15,6 @@ FactoryGirl.define do
 
   factory :user_team_player do
     user_team
-    player_id{Random.rand Player.count}
+    player_id { Player.first.id+Random.rand(Player.count) }
   end
 end
