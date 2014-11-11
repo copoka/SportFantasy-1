@@ -84,7 +84,7 @@ def write_stats(stats, out):
             w.writerow(row)
 
 def get_stats():
-    driver = webdriver.Chrome(executable_path=r"C:\Chrome\chromedriver.exe")
+    driver = webdriver.Chrome(executable_path=r"./chromedriver")
     driver.set_page_load_timeout(30)
 
     login(driver)
