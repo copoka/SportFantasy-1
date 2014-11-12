@@ -2,7 +2,8 @@ sport_fantasy = angular.module('sport_fantasy', [
   'templates',
   'ngRoute',
   'ngResource',
-  'controllers'
+  'controllers',
+  'sport_fantasyServices'
 #  'angular-flash.service',
 #  'angular-flash.flash-alert-directive'
 ])

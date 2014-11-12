@@ -1,10 +1,12 @@
 controllers = angular.module('controllers')
-controllers.controller("PlayersController", [ '$scope', '$routeParams', '$location', '$resource', '$http',
-  ($scope, $routeParams, $location, $resource, $http)->
+controllers.controller("PlayersController", [ '$scope', '$routeParams', '$location', '$resource', '$http', 'User','SharedData',
+  ($scope, $routeParams, $location, $resource, $http, User,SharedData)->
 #    module.factory('User', ($resource)->
 #      $resource('/users/:id'))
     Player = $resource('/players/:playerId', { playerId: "@id", format: 'json' })
-    User = $resource('/users/:userId', { userId: "@id", format: 'json' })
+    $scope.players = Player.query()
+
+#    User = $resource('/users/:userId', { userId: "@id", format: 'json' })
     UserTeam = $resource('/user_teams/:user_team_Id.json', {user_team_Id: "@id"})
     UserTeamPlayer = $resource('/user_team_players/:user_team_player_Id.json', {user_team_player_Id: "@id"})
 
@@ -14,8 +16,9 @@ controllers.controller("PlayersController", [ '$scope', '$routeParams', '$locati
     #    $scope.current_user = User.query()[0]
     #    $scope.current_user = null
     #    $scope.$apply 'current_user'
+    $scope.SharedData=SharedData
     $scope.users = User.query '', (resp)->
-      $scope.current_user = resp[0]
+      $scope.SharedData.current_user = resp[0]
 
 
     #    $scope.$watch 'current_user', ->

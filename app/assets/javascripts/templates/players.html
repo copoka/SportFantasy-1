@@ -1,11 +1,11 @@
 users:
-<select ng-model="current_user" ng-options="user.name for user in users"></select>
+<select ng-model="SharedData.current_user" ng-options="user.name for user in users"></select>
 <br>
-current user: {{current_user.name}}
+current user: {{SharedData.current_user.name}}
 <br>
 
 user_teams:
-<select ng-model="current_team" ng-options="current_team.name for current_team in current_user.user_teams"></select>
+<select ng-model="current_team" ng-options="current_team.name for current_team in SharedData.current_user.user_teams"></select>
 <!--<ul class="list-unstyled">-->
     <!--<li ng-repeat="user_team in current_user.user_teams">-->
         <!--[{{$index + 1}}] {{user_team.name}}-->
