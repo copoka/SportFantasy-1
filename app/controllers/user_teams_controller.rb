@@ -1,5 +1,5 @@
 class UserTeamsController < ApplicationController
-  before_action :set_user_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_team, only: [:show, :edit, :update, :destroy, :add_player_to_user_team]
 
   #Sphinx
   def search
@@ -70,7 +70,7 @@ class UserTeamsController < ApplicationController
   end
 
   def add_player_to_user_team
-    @user_team = UserTeam.find(params[:user_team_id])
+    #@user_team = UserTeam.find(params[:user_team_id])
     @user_team.players<<Player.find(params[:player_id])
     #TODO сделать проверку тут или в модели user_team_players и при неудачном сохранении выводить ошибку
     #render status: :ok
