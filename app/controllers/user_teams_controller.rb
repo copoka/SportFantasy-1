@@ -76,11 +76,21 @@ class UserTeamsController < ApplicationController
     #TODO сделать проверку тут или в модели user_team_players и при неудачном сохранении выводить ошибку
     #render status: :ok
     #render nothing: true, status: :not_acceptable
-    render nothing: true
+
+    #render nothing: true
+
     #render json:{partial: '/user'} user_team_player
     #render json: {partial: 'user_team_players/show', object: user_team_player}
     #render 'user_team_players/show', content_type: :json, object: user_team_player
     #render json: user_team_player, player
+
+    respond_to do |format|
+      #format.html { redirect_to @user_team, notice: 'User team was successfully created.' }
+      format.json { render template: 'user_team_players/show', status: :created,
+                           location: user_team_player, locals: {user_team_player: user_team_player} }
+      #format.json { render action: 'show', status: :created, location: @user_team }
+    end
+
   end
 
   private

@@ -8,7 +8,7 @@ sport_fantasyServices.factory('UserTeam', #['$location', '$resource', '$http', '
   ($location, $resource, $http)->
     UserTeam = $resource('/user_teams/:user_team_Id.json', {user_team_Id: "@id"})
     UserTeam.prototype.add_player = (player)->
-      $http.post('/user_team/add_player_to_user_team', {player_id: player.id, id: this.id})
+      $http.post('/user_team/add_player_to_user_team.json', {player_id: player.id, id: this.id})
 #      success((data, status, headers, config) ->
 #        alert(this.user_team_players[0].name)
 #        this.user_team_players<<data
