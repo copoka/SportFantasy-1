@@ -41,14 +41,10 @@ controllers.controller("PlayersController", [ '$scope', '$routeParams', '$locati
     $scope.add_player_to_user_team = (player)->
       $scope.current_team.add_player(player)
       .then (response)->
-#          alert response.data.toString()
-#          alert response.data.user_team.name
-#          $scope.user_team_players = UserTeamPlayer.query {user_team_id: $scope.current_team.id}
-#          $scope.user_team_players << {player: player}
-          $scope.$apply ()->
-#            alert player.toJson
-            $scope.user_team_players << {player: player.toJson}
-        , (err)->
+#        alert "before "+$scope.user_team_players.length
+        $scope.user_team_players.push response.data
+        ,
+        (err)->
           alert err.data
 
 #    $scope.add_player_to_user_team = (player_id, user_team_id)->
