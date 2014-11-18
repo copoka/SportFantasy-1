@@ -4,19 +4,23 @@ sport_fantasyServices.factory('User', ['$resource',
     $resource('/users/:userId', {userId: "@id", format: 'json'})
 ])
 
+sport_fantasyServices.factory('UserTeamPlayer', ['$resource',
+  ($resource)->
+    $resource('/user_team_players/:user_team_player_Id.json', {user_team_player_Id: "@id"})
+])
+
 sport_fantasyServices.factory('UserTeam', #['$location', '$resource', '$http', '$scope',
   ($location, $resource, $http)->
     UserTeam = $resource('/user_teams/:user_team_Id.json', {user_team_Id: "@id"})
+    UserTeam.user_team_players = {}
     UserTeam.prototype.add_player = (player)->
       $http.post('/user_team/add_player_to_user_team.json', {player_id: player.id, id: this.id})
-#      success((data, status, headers, config) ->
-#        alert(this.user_team_players[0].name)
-#        this.user_team_players<<data
-##      $location.path '/'
-#      ).
-#      error((data, status, headers, config) ->
-##
-#      )
+      .then (response)->
+        alert "before " + this.user_team_players #.length
+        this.user_team_players.push response.data
+        ,
+        (err)->
+          alert err.data
     UserTeam
 )
 
