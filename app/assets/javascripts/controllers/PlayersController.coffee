@@ -39,14 +39,15 @@ controllers.controller("PlayersController", [ '$scope', '$routeParams', '$locati
     #err handle
 
     $scope.add_player_to_user_team = (player)->
-      $scope.current_team.add_player(player)
-#      new_player = new UserTeamPlayer({player_id: player.id, user_team_id: $scope.current_team.id})
-#      new_player.$save()
+#      $scope.current_team.add_player(player)
+      new_player = new UserTeamPlayer({player_id: player.id, user_team_id: $scope.current_team.id})
+      new_player.$save()
       .then (response)->
 #        alert "before "+$scope.current_team.user_team_players.length
 #        $scope.$apply (response)->
-#          alert "before "+response.data
-        $scope.current_team.user_team_players.push response.data
+#        alert "before "+response.data
+        console.log( JSON.stringify(response) )
+        $scope.current_team.user_team_players.push response
       ,
       (err)->
         alert err.data
