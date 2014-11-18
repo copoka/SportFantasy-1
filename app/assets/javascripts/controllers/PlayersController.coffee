@@ -40,12 +40,16 @@ controllers.controller("PlayersController", [ '$scope', '$routeParams', '$locati
 
     $scope.add_player_to_user_team = (player)->
       $scope.current_team.add_player(player)
-#      .then (response)->
+#      new_player = new UserTeamPlayer({player_id: player.id, user_team_id: $scope.current_team.id})
+#      new_player.$save()
+      .then (response)->
 #        alert "before "+$scope.current_team.user_team_players.length
-#        $scope.current_team.user_team_players.push response.data
-#        ,
-#        (err)->
-#          alert err.data
+#        $scope.$apply (response)->
+#          alert "before "+response.data
+        $scope.current_team.user_team_players.push response.data
+      ,
+      (err)->
+        alert err.data
 
 #    $scope.add_player_to_user_team = (player_id, user_team_id)->
 #      $http.post('/user_team/add_player_to_user_team', {player_id: player_id, user_team_id: user_team_id}).
