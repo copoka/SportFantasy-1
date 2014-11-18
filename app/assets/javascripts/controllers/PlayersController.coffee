@@ -46,10 +46,21 @@ controllers.controller("PlayersController", [ '$scope', '$routeParams', '$locati
 #        alert "before "+$scope.current_team.user_team_players.length
 #        $scope.$apply (response)->
 #        alert "before "+response.data
-        console.log( JSON.stringify(response) )
+        console.log(JSON.stringify(response))
         $scope.current_team.user_team_players.push response
       ,
       (err)->
+        alert err.data
+
+    $scope.remove_player_from_user_team = (user_team_player)->
+#      $scope.current_team.add_player(player)
+      player = new UserTeamPlayer({id: user_team_player.id})
+      player.$remove()
+      .then (response)->
+        console.log JSON.stringify response
+        i=$scope.current_team.user_team_players.indexOf user_team_player
+        $scope.current_team.user_team_players.splice i,1
+      , (err)->
         alert err.data
 
 #    $scope.add_player_to_user_team = (player_id, user_team_id)->

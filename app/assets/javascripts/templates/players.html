@@ -17,6 +17,7 @@ players in team:
 <ul class="list-unstyled">
     <li ng-repeat="user_team_player in current_team.user_team_players">
         [{{$index + 1}}] {{user_team_player.player.name}}
+        <button class="btn btn-default" ng-click="remove_player_from_user_team(user_team_player)"> - </button>
     </li>
 </ul>
 <br>
