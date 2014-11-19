@@ -12,13 +12,17 @@ sport_fantasy.config([ '$routeProvider',
   ($routeProvider)->
     $routeProvider
     .when('/players',
-        templateUrl: "players.html"
-        controller: 'PlayersController'
-      )
+#      templateUrl: JST["players"]
+#      templateUrl: "players"
+      templateUrl: "players.html"
+#      templateUrl: "index2.html"
+#        templateUrl: "app/views/players/index.html.haml"
+      controller: 'PlayersController'
+    )
     .when('/',
-        templateUrl: "index2.html"
-        controller: 'VoidController'
-      )
+      templateUrl: "index2.html"
+      controller: 'VoidController'
+    )
 ])
 
 controllers = angular.module('controllers', [])
