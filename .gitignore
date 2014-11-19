@@ -49,3 +49,4 @@ config/secrets.yml
 bower.json
 
 /.idea
+*.svg
