@@ -63,3 +63,11 @@ gem 'annotate', '~> 2.6.5'
 # Sphinx
 gem 'mysql2',          '0.3.12b5', :platform => :ruby
 gem 'thinking-sphinx', '~> 3.1.0'
+
+# Faster CSV
+gem 'fastercsv', '      ~> 1.5.5'
+
+# Scheme
+group :development, :test do
+    gem 'railroady'
+end
