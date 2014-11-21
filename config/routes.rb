@@ -1,4 +1,5 @@
 SportFantasy::Application.routes.draw do
+  devise_for :users
   resources :total_performances
 
   resources :performances
