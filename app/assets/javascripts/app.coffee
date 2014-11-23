@@ -5,9 +5,18 @@ sport_fantasy = angular.module('sport_fantasy', [
   'Devise',
   'controllers',
   'sport_fantasyServices'
+#  'sport_fantasy2',
 #  'angular-flash.service',
 #  'angular-flash.flash-alert-directive'
 ])
+
+#sport_fantasy2 = angular.module('sport_fantasy2', ['Devise']).
+#config((AuthProvider)->
+## Configure Auth service with AuthProvider
+#).
+#controller('myCtrl', (Auth)->
+## Use your configured Auth service.
+#)
 
 sport_fantasy.config([ '$routeProvider',
   ($routeProvider)->
@@ -26,11 +35,11 @@ sport_fantasy.config([ '$routeProvider',
     )
 ])
 
-sport_fantasy.config((AuthProvider)->
-  AuthProvider.registerPath('/users/sign_in.json');
-  AuthProvider.registerMethod('GET');
-  AuthProvider.resourceName('user');
-)
+#sport_fantasy.config((AuthProvider)->
+#  AuthProvider.registerPath('/users/sign_in.json');
+#  AuthProvider.registerMethod('GET');
+#  AuthProvider.resourceName('user');
+#)
 
 controllers = angular.module('controllers', [])
 controllers.controller("VoidController", [ '$scope',

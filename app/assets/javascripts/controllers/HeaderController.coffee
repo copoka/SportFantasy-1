@@ -1,6 +1,6 @@
 controllers = angular.module('controllers')
-controllers.controller("HeaderController", [ '$scope', '$location', '$resource', 'SharedData', 'Devise',
-  ($scope, $location, $resource, SharedData, Devise)->
+controllers.controller("HeaderController", [ '$scope', '$location', '$resource', 'SharedData', 'Auth',
+  ($scope, $location, $resource, SharedData, Auth)->
     $scope.isAlive = (viewLocation) ->
       viewLocation == $location.path
 
@@ -10,7 +10,7 @@ controllers.controller("HeaderController", [ '$scope', '$location', '$resource',
     #    $scope.users = User.query()
     $scope.SharedData = SharedData
 
-    Devise.currentUser().then (user) ->
+    Auth.currentUser().then (user) ->
       $scope.current_user = user
     , (error)->
         console.log error
