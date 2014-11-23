@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141103163049) do
+ActiveRecord::Schema.define(version: 20141123004949) do
+
+  create_table "User_Team_Players", force: true do |t|
+    t.integer  "user_team_id"
+    t.integer  "player_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "first_team",   null: false
+  end
+
+  add_index "user_team_players", ["player_id"], name: "index_user_team_players_on_player_id", using: :btree
+  add_index "user_team_players", ["user_team_id"], name: "index_user_team_players_on_user_team_id", using: :btree
 
   create_table "ampluas", force: true do |t|
     t.string   "name"
@@ -100,16 +111,6 @@ ActiveRecord::Schema.define(version: 20141103163049) do
   end
 
   add_index "total_performances", ["player_id"], name: "index_total_performances_on_player_id", using: :btree
-
-  create_table "user_team_players", force: true do |t|
-    t.integer  "user_team_id"
-    t.integer  "player_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_team_players", ["player_id"], name: "index_user_team_players_on_player_id", using: :btree
-  add_index "user_team_players", ["user_team_id"], name: "index_user_team_players_on_user_team_id", using: :btree
 
   create_table "user_teams", force: true do |t|
     t.integer  "user_id"
