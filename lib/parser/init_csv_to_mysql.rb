@@ -23,7 +23,7 @@ CSV.foreach(stats.csv, headers: true) do |row|
   player = Player.new (
     name: row[0],
     apmlua_id: prep_amplua_id,
-    real_team_id:
+    real_team_id: row[18]
   )
   player.save
 
