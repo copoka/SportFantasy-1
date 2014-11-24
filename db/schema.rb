@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20141123004949) do
     t.integer  "player_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "first_team",   null: false
+    t.boolean  "first_team"
   end
 
   add_index "user_team_players", ["player_id"], name: "index_user_team_players_on_player_id", using: :btree
