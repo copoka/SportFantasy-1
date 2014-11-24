@@ -3,8 +3,11 @@
         <li ng-class="{ active: isActive('/')}"><a href="/">Home</a></li>
         <li ng-class="{ active: isActive('/players')}"><a href="#/players">players</a></li>
         <li ng-class="{ active: isActive('/real_teams')}"><a href="#/real_teams">real_teams</a></li>
-        <li ng-class>Current user: {{SharedData.current_user.name}}</li>
-        <li><a href="/users/sign_up">sign_up</a></li>
+        <li class="navbar-text">Current user: {{SharedData.current_user.name}}</li>
+        <li class="navbar-text">Current devise user: {{current_user.email}}</li>
+        <li ng-hide="current_user"><a href="/users/sign_in">sign_in</a></li>
+        <li ng-hide="current_user"><a href="/users/sign_up">sign_up</a></li>
+        <li ng-show="current_user"><a href="/users/sign_out" data-method='delete'>sign_out</a></li>
         <!--<li ng-class>2 {{users[0].name}}</li>-->
     </ul>
 </div>
