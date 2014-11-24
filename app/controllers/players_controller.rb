@@ -1,10 +1,11 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
   
-  #Sphinx
+  # Sphinx
   def search
-      @players = Player.search params[:search]
+      @players = Riddle::Query.escape(params[:search], :ranker => :proximity, :match_mode => :any)
   end
+
   
   # GET /players
   # GET /players.json

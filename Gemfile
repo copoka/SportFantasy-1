@@ -9,8 +9,6 @@ gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
-gem 'haml'
-
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -70,5 +68,13 @@ gem 'annotate', '~> 2.6.5'
 # gem 'debugger', group: [:development, :test]
 
 # Sphinx
-#gem 'mysql2',          '0.3.12b5', :platform => :ruby
-#gem 'thinking-sphinx', '~> 3.1.0'
+gem 'mysql2',          '0.3.12b5', :platform => :ruby
+gem 'thinking-sphinx', '~> 3.1.0'
+
+# Faster CSV
+gem 'fastercsv', '      ~> 1.5.5'
+
+# Scheme
+group :development, :test do
+    gem 'railroady'
+end
