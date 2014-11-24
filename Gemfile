@@ -73,8 +73,3 @@ gem 'thinking-sphinx', '~> 3.1.0'
 
 # Faster CSV
 gem 'fastercsv', '      ~> 1.5.5'
-
-# Scheme
-group :development, :test do
-    gem 'railroady'
-end
