@@ -9,7 +9,7 @@ RE_REMOVE_HTML = re.compile('<.+?>')
 SLEEP_SECONDS = 1
 
 fields = ['name', 'pos', 'MP', 'Pri', 'GS', 'Ass', 'CS', 'GC',
-    'PM', 'PE', 'PC', 'PS', 'YC', 'RC', 'Sav', 'RB', 'MDP', 'PTS']
+    'PM', 'PE', 'PC', 'PS', 'YC', 'RC', 'Sav', 'RB', 'MDP', 'PTS', 'team']
 
 
 XPATH_MAP = {
@@ -31,6 +31,7 @@ XPATH_MAP = {
     'RB': "td[17]",
     'MDP': "td[18]",
     'PTS': "td[19]",
+    'team': "td[2]/span[1]"
 }
 
 "MP: Minutes Played"
@@ -55,10 +56,10 @@ stats = []
 def process_stats_row(stat_row):
     stats_item = {}
     for col_name, xpath in XPATH_MAP.items():
-
+        
         stats_item[col_name] = RE_REMOVE_HTML.sub('', stat_row.find_element_by_xpath(xpath).get_attribute('innerHTML'))
         stats_item[col_name] = stats_item[col_name].encode('utf-8')
-    #print stats_item
+    
     return stats_item
 
 def process_page(driver, page):
@@ -71,7 +72,7 @@ def process_page(driver, page):
 
     stats = []
     for row in rows:
-
+        
         stats_item = process_stats_row(row)
         stats.append(stats_item)
 
@@ -79,7 +80,7 @@ def process_page(driver, page):
     time.sleep(SLEEP_SECONDS)
     clickme = driver.find_element_by_xpath("//div[contains(concat(' ',normalize-space(@id),' '),' statisticstable1_paginate ')]/span[4]")
     clickme.click()
-
+    
     return stats
 
 
@@ -90,14 +91,14 @@ def write_stats(stats, out):
         w.writeheader()
         for row in stats:
             w.writerow(row)
-
+            
 
 def get_stats():
-
+    
     fp = webdriver.FirefoxProfile()
 
     driver = webdriver.Firefox(firefox_profile=fp)
-
+     
     time.sleep(SLEEP_SECONDS)
 
     stats = []
@@ -105,9 +106,9 @@ def get_stats():
     driver.get('http://en.uclfantasy.uefa.com/UEFA/15813/clientplayerlist.do')
 
     for page in range(1, 6):
-
+    
         page_stats = process_page(driver, page)
-        stats.extend(page_stats)
+        stats.extend(page_stats)  
 
     write_stats(stats, 'stats.csv')
 
@@ -115,3 +116,4 @@ def get_stats():
 
 if __name__ == '__main__':
     get_stats()
+
