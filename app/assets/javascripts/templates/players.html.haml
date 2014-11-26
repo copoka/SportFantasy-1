@@ -15,7 +15,7 @@ current user: {{SharedData.current_user.name}}
 
       %ul.list-unstyled
         %li{"ng-repeat"=>"player in players"}
-          .row
+          .row.player
             .col-md-11
               [{{$index + 1}}] {{player.name}}. team: {{player.real_team.name}}.
             .col-md-1
@@ -27,7 +27,7 @@ current user: {{SharedData.current_user.name}}
 
       %ul.list-unstyled
         %li{"ng-repeat"=>"user_team_player in current_team.user_team_players"}
-          .row
+          .row.player
             .col-md-1
               %button{"class"=>"btn btn-default", "ng-click"=>"remove_player_from_user_team(user_team_player)"} -
             .col-md-11
