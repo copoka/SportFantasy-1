@@ -29,7 +29,9 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# работа с пользователями
 gem 'devise'
+gem 'cancan'
 
 #gems for angular js
 gem 'bower-rails'

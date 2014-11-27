@@ -15,7 +15,7 @@ class PlayersController < ApplicationController
   end
 
   def search_amplua
-      @players = ThinkingSphinx.search(Riddle::Query.escape(params[:search], :classes => [Amplua], ))
+      @players = ThinkingSphinx.search(Riddle::Query.escape(params[:search], :classes => [Amplua] )) # => не работает пока
   end
 
   # GET /players
