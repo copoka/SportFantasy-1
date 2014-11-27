@@ -13,17 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20141123004949) do
 
-  create_table "User_Team_Players", force: true do |t|
-    t.integer  "user_team_id"
-    t.integer  "player_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "first_team"
-  end
-
-  add_index "user_team_players", ["player_id"], name: "index_user_team_players_on_player_id", using: :btree
-  add_index "user_team_players", ["user_team_id"], name: "index_user_team_players_on_user_team_id", using: :btree
-
   create_table "ampluas", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -110,7 +99,18 @@ ActiveRecord::Schema.define(version: 20141123004949) do
     t.datetime "updated_at"
   end
 
-  add_index "total_performances", ["player_id"], name: "index_total_performances_on_player_id", using: :btree
+  add_index "total_performances", ["player_id"], name: "index_total_performances_on_player_id"
+
+  create_table "user_team_players", force: true do |t|
+    t.integer  "user_team_id"
+    t.integer  "player_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "first_team"
+  end
+
+  add_index "user_team_players", ["player_id"], name: "index_user_team_players_on_player_id"
+  add_index "user_team_players", ["user_team_id"], name: "index_user_team_players_on_user_team_id"
 
   create_table "user_teams", force: true do |t|
     t.integer  "user_id"
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 20141123004949) do
     t.datetime "updated_at"
   end
 
-  add_index "user_teams", ["user_id"], name: "index_user_teams_on_user_id", using: :btree
+  add_index "user_teams", ["user_id"], name: "index_user_teams_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"
