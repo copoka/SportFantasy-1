@@ -12,4 +12,18 @@
 class UserTeamPlayer < ActiveRecord::Base
   belongs_to :user_team
   belongs_to :player
+
+  validates  :player_id,
+                presence: true,
+                uniqueness: true,
+                numericality: { only_integer: true }
+
+  validates :user_team_id,
+                presence: true,
+                numericality: { only_integer: true }
+
+  before_update do |user_team_player|
+      
+  end
+
 end

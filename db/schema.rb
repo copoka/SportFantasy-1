@@ -13,17 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20141123004949) do
 
-  create_table "User_Team_Players", force: true do |t|
-    t.integer  "user_team_id"
-    t.integer  "player_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "first_team",   null: false
-  end
-
-  add_index "user_team_players", ["player_id"], name: "index_user_team_players_on_player_id", using: :btree
-  add_index "user_team_players", ["user_team_id"], name: "index_user_team_players_on_user_team_id", using: :btree
-
   create_table "ampluas", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -40,8 +29,8 @@ ActiveRecord::Schema.define(version: 20141123004949) do
     t.datetime "updated_at"
   end
 
-  add_index "matches", ["team_away_id"], name: "index_matches_on_team_away_id", using: :btree
-  add_index "matches", ["team_home_id"], name: "index_matches_on_team_home_id", using: :btree
+  add_index "matches", ["team_away_id"], name: "index_matches_on_team_away_id"
+  add_index "matches", ["team_home_id"], name: "index_matches_on_team_home_id"
 
   create_table "performances", force: true do |t|
     t.integer  "player_id"
@@ -64,9 +53,9 @@ ActiveRecord::Schema.define(version: 20141123004949) do
     t.datetime "updated_at"
   end
 
-  add_index "performances", ["amplua_id"], name: "index_performances_on_amplua_id", using: :btree
-  add_index "performances", ["player_id"], name: "index_performances_on_player_id", using: :btree
-  add_index "performances", ["real_team_id"], name: "index_performances_on_real_team_id", using: :btree
+  add_index "performances", ["amplua_id"], name: "index_performances_on_amplua_id"
+  add_index "performances", ["player_id"], name: "index_performances_on_player_id"
+  add_index "performances", ["real_team_id"], name: "index_performances_on_real_team_id"
 
   create_table "players", force: true do |t|
     t.string   "name"
@@ -82,8 +71,8 @@ ActiveRecord::Schema.define(version: 20141123004949) do
     t.integer  "past_score_4", default: 0
   end
 
-  add_index "players", ["amplua_id"], name: "index_players_on_amplua_id", using: :btree
-  add_index "players", ["real_team_id"], name: "index_players_on_real_team_id", using: :btree
+  add_index "players", ["amplua_id"], name: "index_players_on_amplua_id"
+  add_index "players", ["real_team_id"], name: "index_players_on_real_team_id"
 
   create_table "real_teams", force: true do |t|
     t.string   "name"
@@ -110,7 +99,18 @@ ActiveRecord::Schema.define(version: 20141123004949) do
     t.datetime "updated_at"
   end
 
-  add_index "total_performances", ["player_id"], name: "index_total_performances_on_player_id", using: :btree
+  add_index "total_performances", ["player_id"], name: "index_total_performances_on_player_id"
+
+  create_table "user_team_players", force: true do |t|
+    t.integer  "user_team_id"
+    t.integer  "player_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "first_team"
+  end
+
+  add_index "user_team_players", ["player_id"], name: "index_user_team_players_on_player_id"
+  add_index "user_team_players", ["user_team_id"], name: "index_user_team_players_on_user_team_id"
 
   create_table "user_teams", force: true do |t|
     t.integer  "user_id"
@@ -120,12 +120,25 @@ ActiveRecord::Schema.define(version: 20141123004949) do
     t.datetime "updated_at"
   end
 
-  add_index "user_teams", ["user_id"], name: "index_user_teams_on_user_id", using: :btree
+  add_index "user_teams", ["user_id"], name: "index_user_teams_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

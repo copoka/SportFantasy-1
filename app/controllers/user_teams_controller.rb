@@ -1,15 +1,18 @@
 class UserTeamsController < ApplicationController
-  before_action :set_user_team, only: [:show, :edit, :update, :destroy]
-  
+  before_action :set_user_team, only: [:show, :edit, :update, :destroy, :add_player_to_user_team]
+
   #Sphinx
   def search
-      @user_teams = UserTeam.search params[:search]
+    @user_teams = UserTeam.search params[:search]
   end
 
   # GET /user_teams
   # GET /user_teams.json
   def index
-    @user_teams = UserTeam.all
+    #@user_teams = UserTeam.all
+    user = User.find params[:user_id]
+    @user_teams=user.user_teams
+    logger.info "For user_id: #{params[:user_id]}, found teams: #{@user_teams}"
   end
 
   # GET /user_teams/1
@@ -66,14 +69,37 @@ class UserTeamsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user_team
-      @user_team = UserTeam.find(params[:id])
+  def add_player_to_user_team
+    #@user_team = UserTeam.find(params[:user_team_id])
+    player=@user_team.players<<Player.find(params[:player_id])
+    @user_team_player=@user_team.user_team_players.last
+    #TODO сделать проверку тут или в модели user_team_players и при неудачном сохранении выводить ошибку
+    #render status: :ok
+    #render nothing: true, status: :not_acceptable
+
+    #render nothing: true
+
+    #render json:{partial: '/user'} @user_team_player
+    #render json: {partial: 'user_team_players/show', object: @user_team_player}
+    #render 'user_team_players/show', content_type: :json, object: @user_team_player
+    #render json: @user_team_player, player
+
+    respond_to do |format|
+      #format.html { redirect_to @user_team, notice: 'User team was successfully created.' }
+      format.json { render template: 'user_team_players/show', status: :created }
+      #format.json { render action: 'show', status: :created, location: @user_team }
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_team_params
-      params.require(:user_team).permit(:user, :name, :score)
-    end
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user_team
+    @user_team = UserTeam.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_team_params
+    params.require(:user_team).permit(:user, :name, :score)
+  end
 end

@@ -9,6 +9,8 @@ gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
+gem 'haml'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -27,15 +29,24 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# работа с пользователями
+gem 'devise'
+gem 'cancan'
+
+#gems for angular js
+gem 'bower-rails'
+gem 'angular-rails-templates'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
 
 group :development, :test do
-    gem 'rspec-rails', '~> 3.0.0'
-    gem 'factory_girl_rails', '~> 4.0'
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'factory_girl_rails', '~> 4.0'
   #gem 'rspec-legacy_formatters', '1.0.0'
+  gem 'railroady'
 end
 
 group :test do
@@ -61,13 +72,8 @@ gem 'annotate', '~> 2.6.5'
 # gem 'debugger', group: [:development, :test]
 
 # Sphinx
-gem 'mysql2',          '0.3.12b5', :platform => :ruby
-gem 'thinking-sphinx', '~> 3.1.0'
-
-# Faster CSV
-gem 'fastercsv', '      ~> 1.5.5'
-
-# Scheme
-group :development, :test do
-    gem 'railroady'
-end
+# gem 'mysql2',          '0.3.12b5', :platform => :ruby
+# gem 'thinking-sphinx', '~> 3.1.0'
+#
+# # Faster CSV
+# gem 'fastercsv', '      ~> 1.5.5'

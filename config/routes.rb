@@ -1,4 +1,5 @@
 SportFantasy::Application.routes.draw do
+  devise_for :users
   resources :total_performances
 
   resources :performances
@@ -14,8 +15,12 @@ SportFantasy::Application.routes.draw do
   resources :user_teams
 
   resources :users
+
+  resources :user_team_players
   
-  root to: 'user_teams#index'
+  root to: 'home#index'
+
+  post '/user_team/add_player_to_user_team', to:  'user_teams#add_player_to_user_team'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

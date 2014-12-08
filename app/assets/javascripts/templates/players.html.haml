@@ -1,0 +1,38 @@
+users:
+%select{"ng-model"=>"SharedData.current_user", "ng-options"=>"user.name for user in users"}
+%br
+current user: {{SharedData.current_user.name}}
+
+
+
+
+.container-fluid
+  .row
+    .col-md-6
+      user_teams:
+      %select{"ng-model"=>"current_team", "ng-options"=>"current_team.name for current_team in SharedData.current_user.user_teams"}
+      %br
+    .col-md-6
+      players in team:
+      %br
+
+  .row
+    .col-md-6
+      %ul.list-unstyled
+        %li{"ng-repeat"=>"player in players"}
+          .row.player
+            .col-md-11.name.real-team-player
+              [{{$index + 1}}] {{player.name}}. team: {{player.real_team.name}}.
+            -#.helper
+            .col-md-1
+              %button{"class"=>"btn btn-default", "ng-click"=>"add_player_to_user_team(player)"} ->
+
+    .col-md-6
+      %ul.list-unstyled
+        %li{"ng-repeat"=>"user_team_player in current_team.user_team_players"}
+          .row.player
+            .col-md-1
+              %button{"class"=>"btn btn-default", "ng-click"=>"remove_player_from_user_team(user_team_player)"} <-
+            .col-md-11.name
+              [{{$index + 1}}] {{user_team_player.player.name}}
+
