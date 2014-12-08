@@ -7,6 +7,7 @@
 #  player_id    :integer
 #  created_at   :datetime
 #  updated_at   :datetime
+#  first_team   :boolean
 #
 
 class UserTeamPlayer < ActiveRecord::Base
@@ -17,6 +18,9 @@ class UserTeamPlayer < ActiveRecord::Base
                 presence: true,
                 uniqueness: true,
                 numericality: { only_integer: true }
+
+  validates  :first_team,
+                presence: true
 
   validates :user_team_id,
                 presence: true,
