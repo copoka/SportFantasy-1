@@ -8,12 +8,13 @@ RE_REMOVE_HTML = re.compile('<.+?>')
 
 SLEEP_SECONDS = 1
 
-fields = ['name', 'pos', 'MP', 'Pri', 'GS', 'Ass', 'CS', 'GC',
-    'PM', 'PE', 'PC', 'PS', 'YC', 'RC', 'Sav', 'RB', 'MDP', 'PTS', 'team']
+fields = ['name', 'team', 'pos', 'MP', 'Pri', 'GS', 'Ass', 'CS', 'GC',
+    'PM', 'PE', 'PC', 'PS', 'YC', 'RC', 'Sav', 'RB', 'MDP', 'PTS']
 
 
 XPATH_MAP = {
     'name': "td[1]/a",
+    'team': "td[2]/span[1]",
     'pos': "td[3]",
     'MP': "td[4]",
     'Pri': "td[5]",
@@ -31,7 +32,6 @@ XPATH_MAP = {
     'RB': "td[17]",
     'MDP': "td[18]",
     'PTS': "td[19]",
-    'team': "td[2]/span[1]"
 }
 
 "MP: Minutes Played"
@@ -62,7 +62,7 @@ def process_stats_row(stat_row):
     
     return stats_item
 
-def process_page(driver, page):
+def process_page(driver, page, stats_team):
     print 'Getting stats...'
 
     print page
@@ -71,10 +71,13 @@ def process_page(driver, page):
 
 
     stats = []
+
     for row in rows:
         
         stats_item = process_stats_row(row)
         stats.append(stats_item)
+
+    stats_team.append([x.get('team') for x in stats])
 
     print 'Sleeping for', SLEEP_SECONDS
     time.sleep(SLEEP_SECONDS)
@@ -83,6 +86,20 @@ def process_page(driver, page):
     
     return stats
 
+def merge(lsts):
+    sts = [set(l) for l in lsts]
+    i = 0
+    while i < len(sts):
+        j = i+1
+        while j < len(sts):
+            if len(sts[i].intersection(sts[j])) > 0:
+                sts[i] = sts[i].union(sts[j])
+                sts.pop(j)
+            else: j += 1                        
+        i += 1
+    lst = [list(s) for s in sts]
+    print lst
+    return lst
 
 def write_stats(stats, out):
     print 'Writing to file', out
@@ -91,6 +108,12 @@ def write_stats(stats, out):
         w.writeheader()
         for row in stats:
             w.writerow(row)
+
+def write_stats_team(stats_team, out):
+    print 'Writing to file', out
+    with open('stats_team.csv','w') as f:
+        writer = csv.writer(f)
+        writer.writerows(zip(*stats_team))
             
 
 def get_stats():
@@ -105,12 +128,17 @@ def get_stats():
 
     driver.get('http://en.uclfantasy.uefa.com/UEFA/15813/clientplayerlist.do')
 
+    stats_team = []
+
     for page in range(1, 6):
     
-        page_stats = process_page(driver, page)
+        page_stats = process_page(driver, page, stats_team)
         stats.extend(page_stats)  
 
+    stats_team = merge(stats_team)
+    
     write_stats(stats, 'stats.csv')
+    write_stats_team(stats_team, 'stats_team.csv')
 
     driver.close()
 
