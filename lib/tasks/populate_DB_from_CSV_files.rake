@@ -4,22 +4,22 @@
 
 require 'csv'
 
-# def get_amplua_id(amplua_code)
-#   amplua_name=case amplua_code
-#                 when "FOR"
-#                   'Нападающий'
-#                 when "MID"
-#                   'Полузащитник'
-#                 when "DEF"
-#                   'Защитник'
-#                 when "GK"
-#                   'Вратарь'
-#               end
-#   Amplua.where(name: amplua_name).firs!
-# end
+def get_amplua_id(amplua_code)
+  amplua_name=case amplua_code
+                when "FOR"
+                  'Нападающий'
+                when "MID"
+                  'Полузащитник'
+                when "DEF"
+                  'Защитник'
+                when "GK"
+                  'Вратарь'
+              end
+  Amplua.where(name: amplua_name).first!
+end
 
 desc "Imports a CSV files into an DB"
-task :populate_DB_from_CSV_files, [:filename] => :environment do
+task :populate_DB_from_CSV_files => :environment do
 
   # populate ampluas
   Amplua.find_or_create_by! name: 'Вратарь'
@@ -45,17 +45,16 @@ task :populate_DB_from_CSV_files, [:filename] => :environment do
     real_team=RealTeam.where(name: row['team']).first!
 
     player = Player.find_or_create_by!(name: row['name']) do |player|
-      player.apmlua_id= prep_amplua_id
+      player.amplua_id= prep_amplua_id
       player.real_team= real_team
     end
 
     TotalPerformance.find_or_create_by!(player_id: player.id) do |tp|
-      tp.amplua_id= player.amplua_id
       # for_playing_up_to_60_minutes= prep_for_playing_up_to_60_minutes
       # for_playing_60_minutes_or_more= prep_for_playing_60_minutes_or_more
       tp.goals= row['GS']
       tp.assists= row['Ass']
-      tp.three_saves_gk= row['Sav']/3 #откуда  как? стоит просто поставить сейвы и уже каждые 3 высчитывать на логике
+      tp.three_saves_gk= row['Sav'].to_i / 3 #откуда  как? стоит просто поставить сейвы и уже каждые 3 высчитывать на логике
       tp.penalty_save_gk= row['PS']
       tp.penalty_miss= row['PM']
       tp.clean_sheet= row['CS']
