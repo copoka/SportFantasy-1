@@ -103,7 +103,7 @@ def merge(lsts):
 
 def write_stats(stats, out):
     print 'Writing to file', out
-    with open('stats.csv','w') as f:
+    with open('stats.csv','wb') as f:
         w = csv.DictWriter(f, delimiter=',', fieldnames=fields)
         w.writeheader()
         for row in stats:
@@ -111,7 +111,7 @@ def write_stats(stats, out):
 
 def write_stats_team(stats_team, out):
     print 'Writing to file', out
-    with open('stats_team.csv','w') as f:
+    with open('stats_team.csv','wb') as f:
         writer = csv.writer(f)
         writer.writerows(zip(*stats_team))
             
