@@ -53,4 +53,5 @@ controllers.controller("VoidController", [ '$scope',
     $scope.number = 4
     $scope.getNumber = (num)-> new Array(num)
     $scope.col_class = "col-md-3"
+    $scope.getColumnClass = (width)-> "col-md-"+width.toString()
 ])

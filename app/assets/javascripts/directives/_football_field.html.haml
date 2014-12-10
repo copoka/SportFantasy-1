@@ -1,0 +1,9 @@
+-#, "ng-class"=>"col_class"         , "ng-class"=>"col-md-#{}"
+
+<div>footballField {{local_positioning}} {{col_width}}</div>
+.container-fluid.footballField
+  .row{"ng-repeat"=>"n in local_positioning track by $index",
+  'ng-init'=>"parentIndex = $index"}
+    .div.brd{"ng-repeat"=>"w in getNumber(n) track by $index",
+     "ng-class"=>"getColumnClass(col_width[parentIndex])"}
+      {{n}} 123 {{col_width[parentIndex]}}

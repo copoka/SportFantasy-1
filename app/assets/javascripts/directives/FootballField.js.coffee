@@ -4,7 +4,16 @@ sport_fantasy.directive "footballField", ()->
   scope:
     positioning: '@'
 #  @ reads the attribute value, = provides two-way binding, & works with functions
-  template: "<div>footballField {{positioning}} {{col_width}}</div>"
+  templateUrl: 'directives/_football_field.html'
+  #TODO create own controller
+  controller: 'VoidController'
 
   link: (scope, element, attr)->
-    scope.col_width = scope.positioning+"fgdfgdf"
+    scope.local_positioning=scope.positioning.split('-').map (n)->
+      parseInt n
+    scope.local_positioning.reverse()
+    scope.col_width = scope.local_positioning.map (n)->
+      12/n
+
+#    scope.col_width.push "10"
+#    this
