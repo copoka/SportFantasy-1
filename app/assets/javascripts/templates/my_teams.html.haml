@@ -1,0 +1,7 @@
+.container-fluid
+  .row
+    .div{"ng-repeat"=>"n in getNumber(4) track by $index", "ng-class"=>"col_class"}
+      {{1+n}}
+  %football-field{:positioning=>"4-4-2"}
+    -#.col-md-6
+    -#  6

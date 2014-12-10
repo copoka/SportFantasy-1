@@ -4,7 +4,9 @@ sport_fantasy = angular.module('sport_fantasy', [
   'ngResource',
   'Devise',
   'controllers',
-  'sport_fantasyServices'
+  'sport_fantasyServices',
+#  'directives'
+#  'directives'
 #  'sport_fantasy2',
 #  'angular-flash.service',
 #  'angular-flash.flash-alert-directive'
@@ -33,6 +35,10 @@ sport_fantasy.config([ '$routeProvider',
       templateUrl: "index2.html"
       controller: 'VoidController'
     )
+    .when('/my_teams',
+      templateUrl: "my_teams.html"
+      controller: 'VoidController'
+    )
 ])
 
 #sport_fantasy.config((AuthProvider)->
@@ -44,4 +50,7 @@ sport_fantasy.config([ '$routeProvider',
 controllers = angular.module('controllers', [])
 controllers.controller("VoidController", [ '$scope',
   ($scope)->
+    $scope.number = 4
+    $scope.getNumber = (num)-> new Array(num)
+    $scope.col_class = "col-md-3"
 ])
