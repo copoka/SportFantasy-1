@@ -1,4 +1,13 @@
 .container-fluid
-  %football-field{:positioning=>"4-5-1"}
+  .row
+    .col-md-4
+      players list
+    .col-md-8
+      %football-field{:positioning=>'current_positioning'}
+  .row
+    .col-md-8.col-md-offset-4{align: 'center'}
+      %select{'ng-model'=>'current_positioning','ng-options'=>"p for p in positionings"}
+      %p
+        {{current_positioning}}
     -#.col-md-6
     -#  6

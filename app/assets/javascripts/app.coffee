@@ -37,7 +37,7 @@ sport_fantasy.config([ '$routeProvider',
     )
     .when('/my_teams',
       templateUrl: "my_teams.html"
-      controller: 'VoidController'
+      controller: 'MyTeamsController'
     )
 ])
 
@@ -56,16 +56,17 @@ controllers.controller("VoidController", [ '$scope',
       new Array(num)
     $scope.col_class = "col-md-3"
 
-    i=-1
+    i = -1
     $scope.getColumnClass = (width)->
       console.log("width "+width)
       # e.g. 5 players in line
       if(width != 2)
+        i = -1
         return "col-md-" + width.toString()
       else
-        i+=1
-        if(i==0)
+        i += 1
+        if(i == 0)
           return 'col-md-2 col-md-offset-1'
-        if(i==4) then i=-1
+        if(i == 4) then i = -1
         'col-md-2'
 ])
