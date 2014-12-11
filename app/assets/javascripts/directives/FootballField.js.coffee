@@ -13,7 +13,7 @@ sport_fantasy.directive "footballField", ()->
       parseInt n
     scope.local_positioning.reverse()
     scope.col_width = scope.local_positioning.map (n)->
-      12/n
+      parseInt 12/n
 
 #    scope.col_width.push "10"
 #    this
