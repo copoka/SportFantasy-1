@@ -10,7 +10,7 @@ sport_fantasy.directive("footballField", ['$compile', ($compile)->
 
   link: (scope, element, attr)->
     scope.$watch 'positioning', ()->
-      console.log 'positioning changed'
+#      console.log 'positioning changed'
       scope.local_positioning = scope.positioning.split('-').map (n)->
         parseInt n
       scope.local_positioning.reverse()

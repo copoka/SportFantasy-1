@@ -3,6 +3,7 @@ sport_fantasy = angular.module('sport_fantasy', [
   'ngRoute',
   'ngResource',
   'Devise',
+  'ngDragDrop',
   'controllers',
   'sport_fantasyServices',
 #  'directives'
@@ -52,13 +53,13 @@ controllers.controller("VoidController", [ '$scope',
   ($scope)->
     $scope.number = 4
     $scope.getNumber = (num)->
-      console.log("num "+num)
+#      console.log("num "+num)
       new Array(num)
     $scope.col_class = "col-md-3"
 
     i = -1
     $scope.getColumnClass = (width)->
-      console.log("width "+width)
+#      console.log("width "+width)
       # e.g. 5 players in line
       if(width != 2)
         i = -1
