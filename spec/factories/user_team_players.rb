@@ -16,5 +16,6 @@ FactoryGirl.define do
   factory :user_team_player do
     user_team
     player_id { Player.first.id+Random.rand(Player.count) }
+    to_create {|instance| instance.save(validate: false) }
   end
 end
