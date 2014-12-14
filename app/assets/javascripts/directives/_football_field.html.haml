@@ -2,9 +2,13 @@
 
 <div>footballField {{local_positioning}} {{col_width}}</div>
 .container-fluid.footballField
-  .row{"ng-repeat"=>"n in local_positioning track by $index",
-  'ng-init'=>"parentIndex = $index"}
-    .div{"ng-repeat"=>"w in getNumber(n) track by $index",
-     "ng-class"=>"getColumnClass(col_width[parentIndex])",align:'center'}
+  .row{"ng-repeat"=>"n in local_positioning track by $index", 'ng-init'=>"parentIndex = $index"}
+    .div{"ng-repeat"=>"w in getNumber(n) track by $index", "ng-class"=>"getColumnClass(col_width[parentIndex])", align:'center'}
+      %img.player-portrait{:alt => "Drag player here.", :src => "#" ,'data-drop'=>"true", 'jqyoui-droppable'=>'' }
+      %p
+        {{n}} 123 {{col_width[parentIndex]}}
+  .row
+    .col-md-12{align:'center'}
       %img.player-portrait{:alt => "Drag player here.", :src => "#"}
-      {{n}} 123 {{col_width[parentIndex]}}
+      %p
+        {{n}} 123 {{col_width[parentIndex]}}

@@ -5,4 +5,5 @@ asset 'angular-resource'
 asset 'bootstrap-sass-official'
 #asset 'angular-flash'
 asset 'angular-devise'
+asset 'angular-dragdrop'
 # vim: ft=ruby
