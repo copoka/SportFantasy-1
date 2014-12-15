@@ -59,6 +59,7 @@ controllers.controller("VoidController", [ '$scope',
 
     i = -1
     $scope.getColumnClass = (width)->
+      console.log 'getColumnClass called'
 #      console.log("width "+width)
       # e.g. 5 players in line
       if(width != 2)
@@ -70,4 +71,22 @@ controllers.controller("VoidController", [ '$scope',
           return 'col-md-2 col-md-offset-1'
         if(i == 4) then i = -1
         'col-md-2'
+
+    for n in [1..11]
+      eval("$scope.player" + n + "={img: '#', name: 'Drag here.'}")
+
+    j = 0
+    $scope.getModel = ()->
+      console.log 'getModel called'
+      j++
+      if j == 12
+        j = 0
+      'player' + j
+
+    $scope.dropCallback = (event, ui) ->
+      console.log event
+      console.log ui
+      #      $(this).append((ui.draggable).clone())
+      console.log "You have droppped: " # + JSON.stringify(ui)
+      ui.position = {x: event.target.x, y: event.target.y}
 ])
