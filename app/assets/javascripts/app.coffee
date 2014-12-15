@@ -72,8 +72,10 @@ controllers.controller("VoidController", [ '$scope',
         if(i == 4) then i = -1
         'col-md-2'
 
+    $scope.players=[]
     for n in [1..11]
-      eval("$scope.player" + n + "={img: '#', name: 'Drag here.'}")
+      eval("$scope.player#{n}={img: '#', name: 'Drag here.#{n}'}")
+      $scope.players.push({img: '#', name: "Drag here.#{n}"})
 
     j = 0
     $scope.getModel = ()->

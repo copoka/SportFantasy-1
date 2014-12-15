@@ -5,11 +5,11 @@
       players list
       %ul
         %li{'ng-repeat'=>'player in players'}
-          .div{style:'display:inline-block','ng-model'=>'player' ,'data-drag'=>"true", 'jqyoui-draggable'=>"{animate:true}",
-          'data-jqyoui-options'=>"{revert: 'invalid', zIndex: 100, cursor: 'crosshair',helper: 'clone'}"}
+          .div{style:'display:inline-block','ng-model'=>'player', 'data-drag'=>"true", 'jqyoui-draggable'=>"{animate:true}",
+          'data-jqyoui-options'=>"{revert: 'invalid', zIndex: 100, cursor: 'crosshair'}"}
             {{player.name}} {{player.amplua}}
-      .div{style:'background-color: blue; width: 200px; height: 200px'}
-        Just for test
+      -#.div{style:'background-color: blue; width: 200px; height: 200px'}
+      -#  Just for test
     .col-md-8
       %football-field{:positioning=>'current_positioning'}
       -#blah

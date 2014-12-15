@@ -4,11 +4,11 @@
 .container-fluid.footballField
   .row{"ng-repeat"=>"n in local_positioning track by $index", 'ng-init'=>"parentIndex = $index"}
     .div{"ng-repeat"=>"w in getNumber(n) track by $index", "ng-class"=>"getColumnClass(col_width[parentIndex])" ,
-    'ng-init'=>"model=getModel()","ng-model"=>"model",
+    'ng-init'=>"model=getModel()","ng-model"=>"players[$index]",
     'data-drop'=>"true", 'jqyoui-droppable'=>"{onDrop: 'dropCallback'}" , align:'center'}
       %img.player-portrait{:alt => "Drag player here.", :src => "#" }
       %p
-        {{n}} 123 {{col_width[parentIndex]}} {{player1.name}}
+        {{n}} 123 {{col_width[parentIndex]}}  {{players[$index].name}}
   .row
     .col-md-12{align:'center'}
       %img.player-portrait{:alt => "Drag player here.", :src => "#"}
