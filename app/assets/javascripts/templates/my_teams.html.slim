@@ -1,0 +1,19 @@
+.container-fluid
+  .row
+    .col-md-4
+      |players list
+      ul
+        li ng-repeat='player in players'
+          .div style='display:inline-block' ng-model='player' data-drag="true" jqyoui-draggable="{animate:true, placeholder: 'keep'}" data-jqyoui-options="{revert: 'invalid', zIndex: 100, cursor: 'crosshair',helper: 'clone'}"
+            | {{player.name}} {{player.amplua}}
+        /.div{style:'background-color: blue; width: 200px; height: 200px'}
+        /  Just for test
+    .col-md-8
+      football-field positioning='current_positioning'
+        /blah
+  .row
+    .col-md-8.col-md-offset-4 align='center'
+      select ng-model='current_positioning' ng-options="p for p in positionings"
+      p
+        | {{current_positioning}}
+
