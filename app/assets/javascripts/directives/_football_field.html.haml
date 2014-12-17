@@ -1,14 +1,14 @@
--#, "ng-class"=>"col_class"         , "ng-class"=>"col-md-#{}"
+-#, "ng-class"=>"col_class"         , "ng-class"=>"col-md-#{}"          players[$index]
 
 <div>footballField {{local_positioning}} {{col_width}}</div>
 .container-fluid.footballField
   .row{"ng-repeat"=>"n in local_positioning track by $index", 'ng-init'=>"parentIndex = $index"}
     .div{"ng-repeat"=>"w in getNumber(n) track by $index", "ng-class"=>"getColumnClass(col_width[parentIndex])" ,
-    'ng-init'=>"model=getModel()","ng-model"=>"players[$index]",
+    'ng-init'=>"model=getModel()","ng-model"=>"model",
     'data-drop'=>"true",'data-drag'=>"false", 'jqyoui-droppable'=>"{onDrop: 'dropCallback'}" , align:'center'}
       %img.player-portrait{:alt => "Drag player here.", :src => "#" }
       %p
-        {{n}} 123 {{col_width[parentIndex]}}  {{players[$index].name}}
+        {{n}} 123 {{col_width[parentIndex]}}  {{model.name}}
   .row
     .col-md-12{align:'center'}
       %img.player-portrait{:alt => "Drag player here.", :src => "#"}

@@ -57,10 +57,24 @@ controllers.controller("VoidController", [ '$scope',
       new Array(num)
     $scope.col_class = "col-md-3"
 
+    counter=(max=10)->
+      n = -1
+      return {
+      count: () ->
+        n+=1
+        if n==max
+          reset()
+#          n=-1
+        n
+      ,reset: ()->  n = -1
+      }
+
+
+    #TODO сделать константы для каждого случая расположения игроков
     i = -1
     $scope.getColumnClass = (width)->
       console.log 'getColumnClass called'
-#      console.log("width "+width)
+      #      console.log("width "+width)
       # e.g. 5 players in line
       if(width != 2)
         i = -1
@@ -72,18 +86,24 @@ controllers.controller("VoidController", [ '$scope',
         if(i == 4) then i = -1
         'col-md-2'
 
-    $scope.players=[]
+    console.log 'VoidController called'
+    $scope.players = []
     for n in [1..11]
       eval("$scope.player#{n}={img: '#', name: 'Drag here.#{n}'}")
-#      $scope.players.push({img: '#', name: "Drag here.#{n}"})
+      $scope.players.push({img: '#', name: "Drag here.#{n}"})
 
-    j = 0
+#    j = -1
+    _j=counter() #10
     $scope.getModel = ()->
-      console.log 'getModel called'
-      j++
-      if j == 12
-        j = 0
-      'player' + j
+#      console.log "getModel called. j=#{j}"
+      j=_j.count()
+#      j++
+#      if j == 10
+#        j = -1
+      console.log "getModel called. j=#{j}"
+      console.log $scope.players[j]
+      $scope.players[j]
+    #      'player' + j
 
     $scope.dropCallback = (event, ui) ->
       console.log event
