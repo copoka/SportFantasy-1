@@ -9,10 +9,7 @@ class UserTeamsController < ApplicationController
   # GET /user_teams
   # GET /user_teams.json
   def index
-    #@user_teams = UserTeam.all
-    user = User.find params[:user_id]
-    @user_teams=user.user_teams
-    logger.info "For user_id: #{params[:user_id]}, found teams: #{@user_teams}"
+    @user_teams = UserTeam.all
   end
 
   # GET /user_teams/1
