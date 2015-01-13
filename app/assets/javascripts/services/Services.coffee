@@ -13,6 +13,7 @@ sport_fantasyServices.factory('UserTeam', #['$location', '$resource', '$http', '
   ($location, $resource, $http)->
     UserTeam = $resource('/user_teams/:user_team_Id.json', {user_team_Id: "@id"})
     #UserTeam.prototype.user_team_players = {}
+    #TODO удалить этот метод, либо перенести два метода из PlayersController
     UserTeam.prototype.add_player = (player)->
       #alert "before post" + this.user_team_players
       $http.post('/user_team/add_player_to_user_team.json', {player_id: player.id, id: this.id})

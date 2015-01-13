@@ -1,7 +1,7 @@
 controllers = angular.module('controllers')
 controllers.controller("PlayersController", [ '$scope', '$routeParams', '$location',
-                                              '$resource', '$http', 'User', 'SharedData', 'UserTeam',
-  ($scope, $routeParams, $location, $resource, $http, User, SharedData, UserTeam)->
+                                              '$resource', '$http', 'User', 'SharedData', 'UserTeam', 'UserTeamPlayer',
+  ($scope, $routeParams, $location, $resource, $http, User, SharedData, UserTeam, UserTeamPlayer)->
 #    module.factory('User', ($resource)->
 #      $resource('/users/:id'))
     Player = $resource('/players/:playerId', { playerId: "@id", format: 'json' })
@@ -9,7 +9,7 @@ controllers.controller("PlayersController", [ '$scope', '$routeParams', '$locati
 
     #    User = $resource('/users/:userId', { userId: "@id", format: 'json' })
     #    UserTeam = $resource('/user_teams/:user_team_Id.json', {user_team_Id: "@id"})
-    UserTeamPlayer = $resource('/user_team_players/:user_team_player_Id.json', {user_team_player_Id: "@id"})
+
 
     #    $scope.players = Player.query()
     #    $scope.user_teams = UserTeam.query {user_id: 3}
@@ -26,6 +26,7 @@ controllers.controller("PlayersController", [ '$scope', '$routeParams', '$locati
     #      UserTeam.query {user_id: $scope.current_user.id}
     #      , (resp)->
     #        $scope.user_teams = resp
+    #TODO использовать юзера только из девайса
     $scope.$watch 'SharedData.current_user', ->
       $scope.SharedData.current_user.user_teams = UserTeam.query {user_id: $scope.SharedData.current_user.id}
 
