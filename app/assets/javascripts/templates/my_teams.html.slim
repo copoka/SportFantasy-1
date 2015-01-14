@@ -5,18 +5,18 @@
       br
       |players list
       ul
-        li ng-repeat='player in my_team.user_team_players'
-          .div style='display:inline-block' ng-model='player' data-drag="true" jqyoui-draggable="{animate:true, placeholder: 'keep'}" data-jqyoui-options="{revert: 'invalid', zIndex: 100, cursor: 'crosshair',helper: 'clone'}"
+        li ng-repeat='user_team_player in my_team.user_team_players'
+          .div style='display:inline-block' ng-model='player' ng-click="user_team_player_change_first_team(user_team_player)" data-drag="true" jqyoui-draggable="{animate:true, placeholder: 'keep'}" data-jqyoui-options="{revert: 'invalid', zIndex: 100, cursor: 'crosshair',helper: 'clone'}"
             /img ng-src="{{player.img_url}}"
             /= image_tag "{{player.img_url}}"
             /= image_tag '123.jpg'
-            | {{player.player.name}}
-            /{{player.amplua}}
-        /.div{style:'background-color: blue; width: 200px; height: 200px'}
-        /  Just for test
+            |{{user_team_player.player.name}} {{user_team_player.first_team}}
+    /{{player.amplua}}
+    /.div{style:'background-color: blue; width: 200px; height: 200px'}
+    /  Just for test
     .col-md-8
       football-field positioning='current_positioning'
-        /blah
+  /blah
   .row
     .col-md-8.col-md-offset-4 align='center'
       select ng-model='current_positioning' ng-options="p for p in positionings"

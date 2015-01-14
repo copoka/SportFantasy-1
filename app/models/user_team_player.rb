@@ -16,11 +16,10 @@ class UserTeamPlayer < ActiveRecord::Base
 
   validates  :player_id,
                 presence: true,
-                uniqueness: true,
                 numericality: { only_integer: true }
 
   validates  :first_team,
-                presence: true
+                :inclusion => {:in => [true, false]}
 
   validates :user_team_id,
                 presence: true,
