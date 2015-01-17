@@ -1,4 +1,7 @@
+#ruby-gemset=sport-fantasy
+ruby '2.1.5'
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
@@ -34,10 +37,6 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'cancan'
 
-#gems for angular js
-gem 'bower-rails'
-gem 'angular-rails-templates'
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -72,9 +71,11 @@ gem 'annotate', '~> 2.6.5'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# Sphinx
-# gem 'mysql2',          '0.3.12b5', :platform => :ruby
-# gem 'thinking-sphinx', '~> 3.1.0'
-#
-# # Faster CSV
-# gem 'fastercsv', '      ~> 1.5.5'
+# Angular integration
+gem 'bootstrap-sass'
+gem 'rails-assets-angular'
+gem 'rails-assets-angular-route'
+gem 'rails-assets-angular-mocks'
+gem 'rails-assets-angular-resource'
+gem 'rails-assets-angular-devise'
+gem 'rails-assets-angular-dragdrop'

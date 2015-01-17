@@ -12,10 +12,10 @@
 //
 //= require jquery/dist/jquery
 //= require jquery-ui/jquery-ui
-//= require angular/angular
-//= require angular-route/angular-route
+//= require angular
+//= require angular-route
 //= require angular-rails-templates
-//= require angular-resource/angular-resource
-//= require angular-devise/lib/devise
-//= require angular-dragdrop/src/angular-dragdrop
+//= require angular-resource
+//= require angular-devise
+//= require angular-dragdrop
 //= require_tree .
