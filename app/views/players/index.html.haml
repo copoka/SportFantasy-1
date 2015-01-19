@@ -4,6 +4,9 @@
     = text_field_tag :search, params[:search]
     = submit_tag "Search", name: nil
 
+=select_tag "teams", options_from_collection_for_select(@real_teams, "id", "name")
+=button_to '<-', players_path, method: :get, class:"btn btn-default"
+
 .container-fluid
   .row
     .col-md-6
