@@ -63,3 +63,11 @@ gem 'rails-assets-angular-mocks'
 gem 'rails-assets-angular-resource'
 gem 'rails-assets-angular-devise'
 gem 'rails-assets-angular-dragdrop'
+
+# heroku deploy
+gem "foreman"
+group :production, :staging do
+  gem "rails_12factor"
+  gem "rails_stdout_logging"
+  gem "rails_serve_static_assets"
+end
