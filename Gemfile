@@ -9,8 +9,6 @@ gem 'rails', '4.2.0'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.1'
-gem 'haml'
-gem 'slim'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -23,6 +21,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.2.6'
+
 # работа с пользователями
 gem 'devise'
 gem 'cancancan'
@@ -55,11 +54,14 @@ gem 'annotate', '~> 2.6.5'
 # gem 'debugger', group: [:development, :test]
 
 # Angular integration
-gem 'angular-rails-templates'
-gem 'bootstrap-sass'
-gem 'rails-assets-angular'
-gem 'rails-assets-angular-route'
-gem 'rails-assets-angular-mocks'
-gem 'rails-assets-angular-resource'
-gem 'rails-assets-angular-devise'
-gem 'rails-assets-angular-dragdrop'
+gem 'twitter-bootstrap-rails'
+gem 'haml-rails'
+gem 'less-rails'
+
+# heroku deploy
+gem "foreman"
+group :production, :staging do
+  gem "rails_12factor"
+  gem "rails_stdout_logging"
+  gem "rails_serve_static_assets"
+end

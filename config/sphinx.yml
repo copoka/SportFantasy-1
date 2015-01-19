@@ -1,8 +1,0 @@
-development:
-    bin_path: /usr/bin/sphinx-searchd
-    pid_file: /var/run/sphinx/sphinx.pid
-
-
-production:
-    pid_file: /var/run/sphinx/sphinx.pid
-    bin_path: /usr/bin/sphinx-searchd

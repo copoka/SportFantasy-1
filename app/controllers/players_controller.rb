@@ -1,23 +1,6 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
 
-  # Sphinx
-  def search_by_name
-      @players = ThinkingSphinx.search(Riddle::Query.escape(params[:search], :classes => [Player, RealTeam], :ranker => :proximity_bm25, :match_mode => :any))
-  end
-
-  def search_sort_by_team
-      @players = ThinkingSphinx.search(Riddle::Query.escape(params[:search], :classes => [Player, RealTeam], :order => :real_team, :ranker => :proximity_bm25, :match_mode => :any))
-  end
-
-  def search_sort_by_amplua
-      @players = Player.search(Riddle::Query.escape(params[:search], :order => :amplua_id, :ranker => :proximity_bm25, :match_mode => :any)) #эта штука ищет только по именам и группирует их по айди амплуа
-  end
-
-  def search_amplua
-      @players = ThinkingSphinx.search(Riddle::Query.escape(params[:search], :classes => [Amplua] )) # => не работает пока
-  end
-
   # GET /players
   # GET /players.json
   def index
