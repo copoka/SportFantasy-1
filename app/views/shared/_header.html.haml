@@ -1,0 +1,35 @@
+%nav.navbar.navbar-default{:role => "navigation"}
+  / Brand and toggle get grouped for better mobile display
+  .navbar-header
+    %button.navbar-toggle{"ng-click" => "navbarCollapsed = !navbarCollapsed", :type => "button"}
+      %span.sr-only Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    %a.navbar-brand{:href => "#"}
+      SF2
+  / Collect the nav links, forms, and other content for toggling
+  /TODO change to link_to
+  .collapse.navbar-collapse{:collapse => "navbarCollapsed"}
+    %ul.nav.navbar-nav
+      %li
+        %a{:href => "/"} Home
+      %li
+        %a{:href => "/players"} players
+      %li
+        %a{:href => "/real_teams"} real_teams
+      %li.navbar-text
+        Current devise user:
+        -if current_user
+          =current_user.email
+      %li
+        %a{:href => "/user_teams"} my_team
+      -until current_user
+        %li{"ng-hide" => "current_user"}
+          %a{:href => "/users/sign_in"} sign_in
+      -until current_user
+        %li{"ng-hide" => "current_user"}
+          %a{:href => "/users/sign_up"} sign_up
+      -if current_user
+        %li
+          %a{"method" => "delete", :href => "/users/sign_out"} sign_out
