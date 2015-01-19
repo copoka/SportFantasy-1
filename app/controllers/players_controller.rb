@@ -22,6 +22,7 @@ class PlayersController < ApplicationController
   # GET /players.json
   def index
     @players = Player.all
+    @user_team=current_user.user_teams.first
   end
 
   # GET /players/1
