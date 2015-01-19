@@ -5,16 +5,16 @@ class PlayersController < ApplicationController
   # GET /players.json
   def index
     @user_team=current_user.user_teams.first if current_user
-    # @real_teams=RealTeam.all
+    @real_teams=RealTeam.all
 
 
-    # if params[:real_team_id]=='-1' or  params[:real_team_id]==nil
-    #   @players = Player.all
-    # else
-    #   @players = RealTeam.find(params[:real_team_id]).players
-    # end
+    if params[:real_team_id]=='-1' or  params[:real_team_id]==nil
+      @players = Player.all
+    else
+      @players = RealTeam.find(params[:real_team_id]).players
+    end
 
-    @players = Player.all
+    # @players = Player.all
   end
 
   # GET /players/1

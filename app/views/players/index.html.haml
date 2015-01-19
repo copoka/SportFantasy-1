@@ -4,9 +4,9 @@
     = text_field_tag :search, params[:search]
     = submit_tag "Search", name: nil
 
--#=form_tag players_path,method: :get   do
--#  =select_tag :real_team_id, options_from_collection_for_select(@real_teams, "id", "name")
--#  =submit_tag 'Применить', class:"btn btn-default"
+=form_tag players_path,method: :get   do
+  =select_tag :real_team_id, options_from_collection_for_select(@real_teams, "id", "name")
+  =submit_tag 'Применить', class:"btn btn-default"
 
 .container-fluid
   .row
