@@ -19,7 +19,7 @@ class UserTeamPlayer < ActiveRecord::Base
                 numericality: { only_integer: true }
 
   validates  :first_team,
-                :inclusion => {:in => [true, false]}
+                :inclusion => {:in => [true, false, nil]}
 
   validates :user_team_id,
                 presence: true,
