@@ -14,4 +14,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :user_teams
+
+  after_create :create_first_user_team
+
+  def create_first_user_team
+    self.user_teams.create(name: 'default')
+  end
 end
