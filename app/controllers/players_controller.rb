@@ -6,15 +6,14 @@ class PlayersController < ApplicationController
   def index
     @user_team=current_user.user_teams.first if current_user
     @real_teams=RealTeam.all
+    @real_teams.unshift RealTeam.new({id: 0, name: '*'})
 
-
-    if params[:real_team_id]=='-1' or  params[:real_team_id]==nil
+    @real_team_id = params[:real_team_id].to_i
+    if @real_team_id==0
       @players = Player.all
     else
-      @players = RealTeam.find(params[:real_team_id]).players
+      @players = RealTeam.find(@real_team_id).players
     end
-
-    # @players = Player.all
   end
 
   # GET /players/1
@@ -72,13 +71,13 @@ class PlayersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_player
-      @player = Player.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_player
+    @player = Player.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def player_params
-      params.require(:player).permit(:name, :real_team_id, :amplua_id, :price, :score)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def player_params
+    params.require(:player).permit(:name, :real_team_id, :amplua_id, :price, :score)
+  end
 end

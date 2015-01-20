@@ -1,11 +1,11 @@
 %h1 Listing players
-= form_tag players_path, method: :get do
-  .field
-    = text_field_tag :search, params[:search]
-    = submit_tag "Search", name: nil
+-#= form_tag players_path, method: :get do
+-#  .field
+-#    = text_field_tag :search, params[:search]
+-#    = submit_tag "Search", name: nil
 
 =form_tag players_path,method: :get   do
-  =select_tag :real_team_id, options_from_collection_for_select(@real_teams, "id", "name")
+  =select_tag :real_team_id, options_from_collection_for_select(@real_teams, "id", "name", @real_team_id) #, selected: @selected_team
   =submit_tag 'Применить', class:"btn btn-default"
 
 .container-fluid
@@ -19,13 +19,13 @@
               team:
               =player.real_team.name
             .col-md-1
-              -if @user_team
+              -if current_user
                 =button_to '->', user_team_players_path(user_team_player:{player_id: player.id,user_team_id:@user_team.id}), class:"btn btn-default"
               /(player: player)
               -#%button{"class"=>"btn btn-default"} ->
 
     .col-md-6
-      -if @user_team
+      -if current_user
         -#=@user_team.name
         %ul.list-unstyled
           -@user_team.players.each do |player|
