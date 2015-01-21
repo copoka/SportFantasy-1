@@ -31,7 +31,7 @@ class UserTeamPlayersController < ApplicationController
         format.html { redirect_to players_path, notice: 'User team player was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user_team_player }
       else
-        format.html { render action: 'new' }
+        format.html { redirect_to players_path, alert: @user_team_player.errors.full_messages }
         format.json { render json: @user_team_player.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +56,7 @@ class UserTeamPlayersController < ApplicationController
   def destroy
     @user_team_player.destroy
     respond_to do |format|
-      format.html { redirect_to user_team_players_url }
+      format.html { redirect_to players_url, notice: "Player #{@user_team_player.player.name} is removed from team." }
       format.json { head :no_content }
     end
   end
