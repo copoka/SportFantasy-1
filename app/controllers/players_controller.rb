@@ -10,10 +10,13 @@ class PlayersController < ApplicationController
 
     @real_team_id = params[:real_team_id].to_i
     if @real_team_id==0
-      @players = Player.all
+      # includes(:real_team) for sort by 'real_teams.name'
+      @players = Player.all.includes(:real_team).order(sort_column)
     else
-      @players = RealTeam.find(@real_team_id).players
+      @players = RealTeam.find(@real_team_id).players.order(sort_column)
     end
+    # @players.order!(sort_column)
+    logger.info "sorted by #{sort_column}"
   end
 
   # GET /players/1
@@ -80,4 +83,22 @@ class PlayersController < ApplicationController
   def player_params
     params.require(:player).permit(:name, :real_team_id, :amplua_id, :price, :score)
   end
+
+  def sort_column
+    return 'name' if !params[:sort] || params[:sort].empty?
+    return params[:sort] if  Player.column_names.include?(params[:sort])
+    model, field = params[:sort].split '.'
+
+    #get Player association, exml: model=real_teams association=RealTeam
+    association=Player.reflect_on_all_associations(:belongs_to).select { |association| association.plural_name==model }
+    return 'name' if association.empty?
+
+    # klass = RealTeam
+    klass=association[0].name.to_s.camelize.constantize
+    return params[:sort] if klass.column_names.include?(params[:sort]) ? params[:sort] : 'name'
+  end
+
+  # def sort_direction
+  #   %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  # end
 end

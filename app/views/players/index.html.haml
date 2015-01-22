@@ -11,18 +11,25 @@
 .container-fluid
   .row
     .col-md-6
-      %ul.list-unstyled
+      %table.table.table-hover
+        %tr
+          %th
+            =sortable 'name'
+          %th Position
+          %th
+            =sortable 'real_teams.name','Team'
+          %th Add player
         -@players.each do |player|
-          %li.row.player
-            .col-md-11.name.real-team-player
+          %tr
+            %td
               =player.name
-              team:
+            %td
+              =player.amplua
+            %td
               =player.real_team.name
-            .col-md-1
+            %td
               -if current_user
                 =button_to '->', user_team_players_path(user_team_player:{player_id: player.id,user_team_id:@user_team.id}), class:"btn btn-default"
-              /(player: player)
-              -#%button{"class"=>"btn btn-default"} ->
 
     .col-md-6
       -if current_user

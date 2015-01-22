@@ -4,6 +4,7 @@
 
 require 'csv'
 
+#TODO check this method, because player created without amplua
 def get_amplua_id(amplua_code)
   amplua_name=case amplua_code
                 when "FOR"
