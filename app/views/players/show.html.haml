@@ -1,0 +1,18 @@
+.container-fluid
+  %h1= @player.name
+  -#TODO add table name and others columns
+  %table.table.table-hover
+    %tr
+      %th for_playing_up_to_60_minutes
+      %th for_playing_60_minutes_or_more
+      %th goals
+      %th assists
+      %th three_saves_gk
+    %tr
+      %td=@player.total_performance.for_playing_up_to_60_minutes
+      %td=@player.total_performance.for_playing_60_minutes_or_more
+      %td=@player.total_performance.goals
+      %td=@player.total_performance.assists
+      %td=@player.total_performance.three_saves_gk
+
+  -#TODO add all performances
