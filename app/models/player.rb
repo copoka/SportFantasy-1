@@ -19,9 +19,9 @@
 class Player < ActiveRecord::Base
     belongs_to :real_team
     belongs_to :amplua
-    has_many :user_team_players
+    has_many :user_team_players, dependent: :destroy
     has_many :user_teams, through: :user_team_players
     
-    has_many :performances
-    has_one :total_performance
+    has_many :performances, dependent: :destroy
+    has_one :total_performance, dependent: :destroy
 end
