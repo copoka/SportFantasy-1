@@ -11,7 +11,7 @@ class PlayersController < ApplicationController
     @real_team_id = params[:real_team_id].to_i
     if @real_team_id==0
       # includes(:real_team) for sort by 'real_teams.name'
-      @players = Player.all.includes(:real_team).order(sort_column)
+      @players = Player.all.includes(:real_team, :amplua).order(sort_column)
     else
       @players = RealTeam.find(@real_team_id).players.order(sort_column)
     end
