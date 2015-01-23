@@ -15,16 +15,16 @@
         %tr
           %th
             =sortable 'name'
-          %th Position
+          %th
+            =sortable 'ampluas.name','Position'
           %th
             =sortable 'real_teams.name','Team'
           %th Add player
         -@players.each do |player|
           %tr
+            %td=link_to player.name,player
             %td
-              =player.name
-            %td
-              =player.amplua
+              =player.amplua.name
             %td
               =player.real_team.name
             %td
