@@ -16,7 +16,7 @@ def get_amplua_id(amplua_code)
                 when "GK"
                   'Вратарь'
               end
-  Amplua.where(name: amplua_name).first!
+  Amplua.where(name: amplua_name).first!.id
 end
 
 desc "Imports a CSV files into an DB"
