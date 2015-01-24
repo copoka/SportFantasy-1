@@ -1,2 +1,12 @@
 .container-fluid
   %h1= @user_team.name
+  .row
+    .col-md-6
+      Players
+    .col-md-6
+      Football field
+      -UserTeam::POSITIONINGS['2-4-4'].each_with_index do |row,i|
+        .row
+          -row.each do |column|
+            %div.bordered{class: column}
+              =UserTeam::POSITIONINGS_NAMES[i]
