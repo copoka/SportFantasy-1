@@ -27,5 +27,5 @@ class UserTeam < ActiveRecord::Base
           ['col-md-4', 'col-md-4', 'col-md-4']
       ]
   }
-  POSITIONINGS_NAMES= %w(FRD MID DEF)
+  POSITIONINGS_NAMES= %w(FRW MID DEF)
 end

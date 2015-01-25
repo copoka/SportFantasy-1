@@ -42,7 +42,7 @@ class UserTeamPlayersController < ApplicationController
   def update
     respond_to do |format|
       if @user_team_player.update(user_team_player_params)
-        format.html { redirect_to @user_team_player, notice: 'User team player was successfully updated.' }
+        format.html { redirect_to user_team_path(current_user.user_teams.take), notice: 'User team player was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

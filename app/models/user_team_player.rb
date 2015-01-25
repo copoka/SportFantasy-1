@@ -31,18 +31,26 @@ class UserTeamPlayer < ActiveRecord::Base
   end
   before_create :check_max_players_count, :check_for_duplicates
 
+  #names for instance_eval
+  FRW_MID_DEF=%w(first_team_forwards first_team_middels first_team_defenders)
+
+  scope :first_team_players, -> { where(first_team: true) }
+  scope :first_team_forwards, -> { first_team_players.where(player: Player.forwards) }
+  scope :first_team_middels, -> { first_team_players.where(player: Player.middels) }
+  scope :first_team_defenders, -> { first_team_players.where(player: Player.defenders) }
+
   private
   def check_max_players_count
     if self.user_team.user_team_players.count>=MAX_PLAYERS_COUNT
       errors.add(:max_players_count, "in your team is #{MAX_PLAYERS_COUNT}.")
-      return false
+      false
     end
   end
 
   def check_for_duplicates
     if self.user_team.players.include? self.player
       errors.add :player, "#{self.player.name} is already in your team."
-      return false
+      false
     end
   end
 end

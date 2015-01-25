@@ -1,12 +1,39 @@
-.container-fluid
-  %h1= @user_team.name
-  .row
-    .col-md-6
-      Players
-    .col-md-6
-      Football field
-      -UserTeam::POSITIONINGS['2-4-4'].each_with_index do |row,i|
-        .row
-          -row.each do |column|
-            %div.bordered{class: column}
-              =UserTeam::POSITIONINGS_NAMES[i]
+-#.container-fluid
+%h1= "Team name: #{@user_team.name}"
+.row
+  .col-md-6
+    -unless @user_team.players.empty?
+      %table.table.table-hover
+        %caption Players
+        %tr
+          %th=sortable 'name'
+          %th=sortable 'ampluas.name','Position'
+          %th First team
+          %th Add player
+
+          -@user_team.user_team_players.each do |user_team_player|
+            %tr
+              %td=link_to user_team_player.player.name,user_team_player.player
+              %td=user_team_player.player.amplua.name
+              %td=user_team_player.first_team
+              %td
+                -if current_user
+                  =button_to '->', user_team_player_path(user_team_player,user_team_player:{first_team:true}),method: :put, class:"btn btn-default"
+    -else
+      =link_to 'Add players to your team.', players_path
+
+  .col-md-6
+    Football field
+    -UserTeam::POSITIONINGS['2-4-4'].each_with_index do |row,i|
+      .row
+        -row.each_with_index do |column,k|
+          %div.bordered{class: column}
+            =UserTeam::POSITIONINGS_NAMES[i]
+            -#exm: first forward player in first_team is:
+            -#@user_team.user_team_players.instance_eval(UserTeamPlayer::FRW_MID_DEF[0])[0]
+            -#@user_team.user_team_players.instance_eval('first_team_forwards')[0]
+            -#@user_team.user_team_players.first_team_forwards[0]
+            -user_team_player=@user_team.user_team_players.instance_eval(UserTeamPlayer::FRW_MID_DEF[i])[k]
+            -if user_team_player
+              =user_team_player.player.name
+              =button_to '<-', user_team_player_path(user_team_player,user_team_player:{first_team:false}),method: :put, class:"btn btn-default"
