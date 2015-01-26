@@ -28,6 +28,7 @@ class UserTeamPlayersController < ApplicationController
 
     respond_to do |format|
       if @user_team_player.save
+        #TODO prevent deleting sort players params in players_path
         format.html { redirect_to players_path, notice: 'User team player was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user_team_player }
       else
@@ -45,7 +46,7 @@ class UserTeamPlayersController < ApplicationController
         format.html { redirect_to user_team_path(current_user.user_teams.take), notice: 'User team player was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { redirect_to user_team_path(current_user.user_teams.take) ,alert: @user_team_player.errors.full_messages}
         format.json { render json: @user_team_player.errors, status: :unprocessable_entity }
       end
     end
