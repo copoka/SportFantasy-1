@@ -27,5 +27,15 @@ class UserTeam < ActiveRecord::Base
           ['col-md-4', 'col-md-4', 'col-md-4']
       ]
   }
-  POSITIONINGS_NAMES= %w(FRW MID DEF)
+
+  #TODO change description
+  #exm: first forward player in first_team is:
+  #@user_team.user_team_players.instance_eval(UserTeamPlayer::FRW_MID_DEF[0])[0]
+  #@user_team.user_team_players.instance_eval('first_team_forwards')[0]
+  #@user_team.user_team_players.first_team_forwards[0]
+  def players_on_football_field
+    players_on_football_field=[]
+    UserTeamPlayer::FRW_MID_DEF.each { |name| players_on_football_field<< self.user_team_players.instance_eval(name) }
+    players_on_football_field
+  end
 end

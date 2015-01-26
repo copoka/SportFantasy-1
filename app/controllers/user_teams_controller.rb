@@ -15,6 +15,7 @@ class UserTeamsController < ApplicationController
   # GET /user_teams/1
   # GET /user_teams/1.json
   def show
+    @players_on_football_field=@user_team.players_on_football_field
   end
 
   # GET /user_teams/new

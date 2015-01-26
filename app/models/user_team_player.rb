@@ -33,6 +33,7 @@ class UserTeamPlayer < ActiveRecord::Base
 
   #names for instance_eval
   FRW_MID_DEF=%w(first_team_forwards first_team_middels first_team_defenders)
+  POSITIONINGS_NAMES= %w(FRW MID DEF)
 
   scope :first_team_players, -> { where(first_team: true) }
   scope :first_team_forwards, -> { first_team_players.where(player: Player.forwards) }

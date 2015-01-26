@@ -28,12 +28,8 @@
       .row
         -row.each_with_index do |column,k|
           %div.bordered{class: column}
-            =UserTeam::POSITIONINGS_NAMES[i]
-            -#exm: first forward player in first_team is:
-            -#@user_team.user_team_players.instance_eval(UserTeamPlayer::FRW_MID_DEF[0])[0]
-            -#@user_team.user_team_players.instance_eval('first_team_forwards')[0]
-            -#@user_team.user_team_players.first_team_forwards[0]
-            -user_team_player=@user_team.user_team_players.instance_eval(UserTeamPlayer::FRW_MID_DEF[i])[k]
-            -if user_team_player
-              =user_team_player.player.name
-              =button_to '<-', user_team_player_path(user_team_player,user_team_player:{first_team:false}),method: :put, class:"btn btn-default"
+            =UserTeamPlayer::POSITIONINGS_NAMES[i]
+            -player_on_football_field=@players_on_football_field[i][k]
+            -if player_on_football_field
+              =player_on_football_field.player.name
+              =button_to '<-', user_team_player_path(player_on_football_field,user_team_player:{first_team:false}),method: :put, class:"btn btn-default"
