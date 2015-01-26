@@ -29,4 +29,5 @@ class Player < ActiveRecord::Base
     #e.g. halfback
     scope :middels,->{where(amplua: Amplua.where(name: 'Полузащитник'))}
     scope :defenders,->{where(amplua: Amplua.where(name: 'Защитник'))}
+    scope :goalkeepers,->{where(amplua: Amplua.where(name: 'Вратарь'))}
 end
