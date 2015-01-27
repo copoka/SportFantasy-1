@@ -13,7 +13,7 @@
 
           -@user_team.user_team_players.each do |user_team_player|
             %tr
-              %td=link_to user_team_player.player.name,user_team_player.player
+              %td.player-in-list=link_to user_team_player.player.name,user_team_player.player
               %td=user_team_player.player.amplua.name
               %td=user_team_player.first_team
               %td
