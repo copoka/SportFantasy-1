@@ -99,6 +99,6 @@ class UserTeamsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_team_params
-    params.require(:user_team).permit(:user, :name, :score)
+    params.require(:user_team).permit(:user, :name, :score, :positioning)
   end
 end

@@ -18,6 +18,6 @@ class User < ActiveRecord::Base
   after_create :create_first_user_team
 
   def create_first_user_team
-    self.user_teams.create(name: 'default',positioning: UserTeam::POSITIONINGS.keys.first)
+    self.user_teams.create(name: 'default',positioning: UserTeam::POSITIONINGS.first)
   end
 end

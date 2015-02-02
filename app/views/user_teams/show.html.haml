@@ -25,12 +25,12 @@
   .col-md-6
     .container-fluid#football-field
       Football field
-      -#-UserTeam::POSITIONINGS['2-4-4'].each_with_index do |row,i|
-      -'2-4-4'.split('-').each_with_index do |players_count,i|
+      -# ex positioning='2-5-3'
+      -@user_team.positioning.split('-').each_with_index do |players_count,i|
         .row{class: "players-in-line-#{players_count}"}
-          -#-row.each_with_index do |column,k|
           -0.upto(players_count.to_i-1) do |k|
-            -#%div.bordered.player{class: column}
+            -#div below been update in app/assets/javascripts/user_team.js.coffee make_football_field()
+              depends on players_count
             %div.bordered.player
               =UserTeamPlayer::POSITIONINGS_NAMES[i]
               -player_on_football_field=@players_on_football_field[i][k]
@@ -42,3 +42,9 @@
           GK
           -if @first_team_goalkeeper
             =@first_team_goalkeeper.name
+            =button_to '<-', user_team_player_path(@first_team_goalkeeper,user_team_player:{first_team:false}),method: :put, class:"btn btn-default"
+      .row
+        .col-md-12
+          =form_for @user_team do |f|
+            =f.select :positioning, UserTeam::POSITIONINGS
+            =f.submit 'change positioning'
