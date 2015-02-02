@@ -25,10 +25,13 @@
   .col-md-6
     .container-fluid#football-field
       Football field
-      -UserTeam::POSITIONINGS['2-4-4'].each_with_index do |row,i|
-        .row
-          -row.each_with_index do |column,k|
-            %div.bordered.player{class: column}
+      -#-UserTeam::POSITIONINGS['2-4-4'].each_with_index do |row,i|
+      -'2-4-4'.split('-').each_with_index do |players_count,i|
+        .row{class: "players-in-line-#{players_count}"}
+          -#-row.each_with_index do |column,k|
+          -0.upto(players_count.to_i-1) do |k|
+            -#%div.bordered.player{class: column}
+            %div.bordered.player
               =UserTeamPlayer::POSITIONINGS_NAMES[i]
               -player_on_football_field=@players_on_football_field[i][k]
               -if player_on_football_field
