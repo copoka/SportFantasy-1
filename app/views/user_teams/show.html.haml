@@ -1,0 +1,50 @@
+-#.container-fluid
+%h1= "Team name: #{@user_team.name}"
+.row
+  .col-md-6
+    -unless @user_team.players.empty?
+      %table.table.table-hover
+        %caption Players
+        %tr
+          %th=sortable 'name'
+          %th=sortable 'ampluas.name','Position'
+          %th First team
+          %th Add player
+
+          -@user_team.user_team_players.each do |user_team_player|
+            %tr
+              %td.player-in-list=link_to user_team_player.player.name,user_team_player.player
+              %td=user_team_player.player.amplua.name
+              %td=user_team_player.first_team
+              %td
+                -if current_user
+                  =button_to '->', user_team_player_path(user_team_player,user_team_player:{first_team:true}),method: :put, class:"btn btn-default"
+    -else
+      =link_to 'Add players to your team.', players_path
+
+  .col-md-6
+    .container-fluid#football-field
+      Football field
+      -# ex positioning='2-5-3'
+      -@user_team.positioning.split('-').each_with_index do |players_count,i|
+        .row{class: "players-in-line-#{players_count}"}
+          -0.upto(players_count.to_i-1) do |k|
+            -#div below been update in app/assets/javascripts/user_team.js.coffee make_football_field()
+              depends on players_count
+            %div.bordered.player
+              =UserTeamPlayer::POSITIONINGS_NAMES[i]
+              -player_on_football_field=@players_on_football_field[i][k]
+              -if player_on_football_field
+                =player_on_football_field.player.name
+                =button_to '<-', user_team_player_path(player_on_football_field,user_team_player:{first_team:false}),method: :put, class:"btn btn-default"
+      .row
+        .col-md12.bordered.player
+          GK
+          -if @first_team_goalkeeper
+            =@first_team_goalkeeper.name
+            =button_to '<-', user_team_player_path(@first_team_goalkeeper,user_team_player:{first_team:false}),method: :put, class:"btn btn-default"
+      .row
+        .col-md-12
+          =form_for @user_team do |f|
+            =f.select :positioning, UserTeam::POSITIONINGS
+            =f.submit 'change positioning'

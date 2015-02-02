@@ -15,6 +15,8 @@ class UserTeamsController < ApplicationController
   # GET /user_teams/1
   # GET /user_teams/1.json
   def show
+    @players_on_football_field=@user_team.players_on_football_field
+    @first_team_goalkeeper=@user_team.user_team_players.first_team_goalkeeper[0].player
   end
 
   # GET /user_teams/new
@@ -97,6 +99,6 @@ class UserTeamsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_team_params
-    params.require(:user_team).permit(:user, :name, :score)
+    params.require(:user_team).permit(:user, :name, :score, :positioning)
   end
 end

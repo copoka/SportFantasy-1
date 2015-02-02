@@ -24,4 +24,10 @@ class Player < ActiveRecord::Base
     
     has_many :performances, dependent: :destroy
     has_one :total_performance, dependent: :destroy
+
+    scope :forwards,->{where(amplua: Amplua.where(name: 'Нападающий'))}
+    #e.g. halfback
+    scope :middels,->{where(amplua: Amplua.where(name: 'Полузащитник'))}
+    scope :defenders,->{where(amplua: Amplua.where(name: 'Защитник'))}
+    scope :goalkeepers,->{where(amplua: Amplua.where(name: 'Вратарь'))}
 end
