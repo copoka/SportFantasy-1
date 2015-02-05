@@ -15,7 +15,9 @@ FactoryGirl.define do
 
   factory :user_team_player do
     user_team
-    player_id { Player.first.id+Random.rand(Player.count) }
+    # TODO add condition for avoid adding same player in an user team
+    # player_id { Player.first.id+Random.rand(Player.count) }
+    player_id {user_team.user_team_players.count}
     to_create {|instance| instance.save(validate: false) }
   end
 end

@@ -15,7 +15,7 @@ FactoryGirl.define do
     name { Faker::Company.name }
     user
 
-    factory :user_teams_with_players do
+    factory :user_team_with_players do
       transient do
         players_count 10
       end

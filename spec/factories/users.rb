@@ -31,7 +31,7 @@ FactoryGirl.define do
           players_count 10
         end
         after(:create) do |user, evaluator|
-          create_list(:user_teams_with_players, evaluator.players_count, user: user)
+          create_list(:user_team_with_players, evaluator.players_count, user: user)
         end
       end
     end
