@@ -27,6 +27,9 @@ gem 'jbuilder', '~> 2.2.6'
 gem 'devise'
 gem 'cancancan'
 
+# rails style guide
+gem 'rubocop'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
