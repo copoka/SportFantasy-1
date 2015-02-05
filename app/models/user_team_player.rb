@@ -11,28 +11,7 @@
 #
 
 class UserTeamPlayer < ActiveRecord::Base
-  MAX_PLAYERS_COUNT=15
-  belongs_to :user_team
-  belongs_to :player
-
-  validates :player_id,
-            presence: true,
-            numericality: {only_integer: true}
-
-  validates :first_team,
-            :inclusion => {:in => [true, false, nil]}
-
-  validates :user_team_id,
-            presence: true,
-            numericality: {only_integer: true}
-
-  before_update do |user_team_player|
-
-  end
-  before_create :check_max_players_count, :check_for_duplicates
-  before_update :check_place_on_football_field
-
-  #names for instance_eval
+  # names for instance_eval
   FRW_MID_DEF=%w(first_team_forwards first_team_middels first_team_defenders)
   POSITIONINGS_NAMES= %w(FOR MID DEF)
   AMPLUA_POS_NAMES={
@@ -41,6 +20,22 @@ class UserTeamPlayer < ActiveRecord::Base
       'Защитник' => "DEF",
       'Вратарь' => "GK"
   }
+  MAX_PLAYERS_COUNT=15
+
+  belongs_to :user_team
+  belongs_to :player
+
+  validates :player_id,
+            presence: true,
+            numericality: {only_integer: true}
+  validates :first_team,
+            :inclusion => {:in => [true, false, nil]}
+  validates :user_team_id,
+            presence: true,
+            numericality: {only_integer: true}
+
+  before_create :check_max_players_count, :check_for_duplicates
+  before_update :check_place_on_football_field
 
   scope :first_team_players, -> { where(first_team: true) }
   scope :first_team_forwards, -> { first_team_players.where(player: Player.forwards) }
