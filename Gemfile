@@ -41,6 +41,7 @@ group :development, :test do
   gem 'railroady'
   gem 'faker', '1.4.3'
   gem 'capybara', '2.4.4'
+  gem 'database_cleaner'
 end
 
 gem 'annotate', '~> 2.6.5'
