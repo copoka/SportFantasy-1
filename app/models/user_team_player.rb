@@ -76,7 +76,7 @@ class UserTeamPlayer < ActiveRecord::Base
 
     for_max_count, mid_max_count, def_max_count=self.user_team.positioning.split '-'
     pos_name=FRW_MID_DEF[POSITIONINGS_NAMES.index(amplua_key)]
-    max_count=eval(amplua_key.downcase+'_max_count')
+    max_count=eval(amplua_key.downcase+'_max_count').to_i
     if self.user_team.user_team_players.instance_eval(pos_name).count >= max_count
       errors.add(amplua_key.downcase+'_max_count', "in your team is #{max_count}.")
       false

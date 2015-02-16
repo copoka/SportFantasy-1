@@ -26,7 +26,8 @@ RSpec.describe UserTeamPlayersController, :type => :controller do
   let!(:user_team) { FactoryGirl.create :user_team }
 
   before(:all) do
-    @player= FactoryGirl.create :player
+    Amplua.create name:'Нападающий'
+    @player= FactoryGirl.create :player, amplua_id:1
     @user_team=FactoryGirl.create :user_team
   end
 
