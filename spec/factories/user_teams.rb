@@ -14,6 +14,7 @@ FactoryGirl.define do
   factory :user_team do
     name { Faker::Company.name }
     user
+    positioning '2-4-4'
 
     factory :user_team_with_players do
       transient do

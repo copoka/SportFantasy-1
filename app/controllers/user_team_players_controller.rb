@@ -1,24 +1,11 @@
 class UserTeamPlayersController < ApplicationController
-  before_action :set_user_team_player, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_team_player, only: [ :update, :destroy]
 
   # GET /user_team_players
   # GET /user_team_players.json
   def index
+    #TODO user_team_players.json only request
     @user_team_players = UserTeamPlayer.where user_team_id: params[:user_team_id]
-  end
-
-  # GET /user_team_players/1
-  # GET /user_team_players/1.json
-  def show
-  end
-
-  # GET /user_team_players/new
-  def new
-    @user_team_player = UserTeamPlayer.new
-  end
-
-  # GET /user_team_players/1/edit
-  def edit
   end
 
   # POST /user_team_players

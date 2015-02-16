@@ -4,23 +4,24 @@ Rails.application.routes.draw do
   resources :performances
 
   resources :matches
-   
+
   resources :players
-   
+
   resources :real_teams
-   
+
   resources :ampluas
-   
+
   resources :user_teams
-   
+
   resources :users
-   
-  resources :user_team_players
+
+  resources :user_team_players, only: [:index, :create, :update, :destroy]
 
   root to: 'home#index'
-   
-  post '/user_team/add_player_to_user_team', to:  'user_teams#add_player_to_user_team'
-  
+
+  #TODO delete if not need already
+  post '/user_team/add_player_to_user_team', to: 'user_teams#add_player_to_user_team'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
