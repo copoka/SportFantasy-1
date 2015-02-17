@@ -19,7 +19,7 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe UserTeamPlayersController, :type => :controller do
-
+  # include 'support/controller_macros'
   # let!(:valid_user_team_player){FactoryGirl.create(:user_team_player_with_user_team)}
   # let!(:valid_user_team_player){FactoryGirl.create :user_team_with_players, players_count: 3}
   let!(:player) { FactoryGirl.create :player }
@@ -109,6 +109,8 @@ RSpec.describe UserTeamPlayersController, :type => :controller do
   end
 
   describe "PUT update" do
+    login_user
+
     describe "with valid params" do
       let(:new_attributes) {
         {first_team: true}
@@ -118,7 +120,7 @@ RSpec.describe UserTeamPlayersController, :type => :controller do
         user_team_player = UserTeamPlayer.create! valid_attributes
         put :update, {:id => user_team_player.to_param, :user_team_player => new_attributes}, valid_session
         user_team_player.reload
-        expect(user_team_player.first_team).to be_true
+        expect(user_team_player.first_team).to be true
       end
 
       it "assigns the requested user_team_player as @user_team_player" do
@@ -130,7 +132,7 @@ RSpec.describe UserTeamPlayersController, :type => :controller do
       it "redirects to the user_team_player" do
         user_team_player = UserTeamPlayer.create! valid_attributes
         put :update, {:id => user_team_player.to_param, :user_team_player => valid_attributes_for_queries}, valid_session
-        expect(response).to redirect_to(user_team_player)
+        expect(response).to redirect_to(user_team_path(subject.current_user.user_teams.take))
       end
     end
 
@@ -144,7 +146,7 @@ RSpec.describe UserTeamPlayersController, :type => :controller do
       it "re-renders the 'edit' template" do
         user_team_player = UserTeamPlayer.create! valid_attributes
         put :update, {:id => user_team_player.to_param, :user_team_player => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
+        expect(response).to redirect_to(user_team_path(subject.current_user.user_teams.take))
       end
     end
   end
