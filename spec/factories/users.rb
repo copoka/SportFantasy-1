@@ -14,7 +14,9 @@ FactoryGirl.define do
   factory :user do
     name { Faker::Name.name }
     email { Faker::Internet.email }
-    to_create {|instance| instance.save(validate: false) }
+    password {Faker::Internet.password 8}
+    # to_create {|instance| instance.save(validate: false) }
+
     #TODO скорее всего надо убрать user_with_teams
     #и оставить только user_with_teams_and_players
     #потому что 2 команды
