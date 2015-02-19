@@ -162,7 +162,7 @@ RSpec.describe UserTeamPlayersController, :type => :controller do
     it "redirects to the user_team_players list" do
       user_team_player = UserTeamPlayer.create! valid_attributes
       delete :destroy, {:id => user_team_player.to_param}, valid_session
-      expect(response).to redirect_to(user_team_players_url)
+      expect(response).to redirect_to(players_url)
     end
   end
 
