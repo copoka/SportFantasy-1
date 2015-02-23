@@ -24,7 +24,7 @@ RSpec.describe AmpluasController, :type => :controller do
   # Amplua. As you add validations to Amplua, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {name: 'суперзащитник'}
   }
 
   let(:invalid_attributes) {
