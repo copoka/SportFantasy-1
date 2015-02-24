@@ -1,5 +1,6 @@
 class UserTeamsController < ApplicationController
   before_action :set_user_team, only: [:show, :edit, :update, :destroy, :add_player_to_user_team]
+  load_and_authorize_resource
 
   #Sphinx
   def search

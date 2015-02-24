@@ -28,11 +28,11 @@
             %td
               =player.real_team.name
             %td
-              -if current_user
+              -if can? :manage, @user_team
                 =button_to '->', user_team_players_path(user_team_player:{player_id: player.id,user_team_id:@user_team.id}), class:"btn btn-default"
 
     .col-md-6
-      -if current_user
+      -if can? :manage, @user_team
         -#=@user_team.name
         %ul.list-unstyled
           -@user_team.user_team_players.each do |user_team_player|

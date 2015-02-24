@@ -17,7 +17,7 @@
               %td=user_team_player.player.amplua.name
               %td=user_team_player.first_team
               %td
-                -if current_user
+                -if can? :manage, @user_team
                   =button_to '->', user_team_player_path(user_team_player,user_team_player:{first_team:true}),method: :put, class:"btn btn-default"
     -else
       =link_to 'Add players to your team.', players_path
@@ -36,13 +36,15 @@
               -player_on_football_field=@players_on_football_field[i][k]
               -if player_on_football_field
                 =player_on_football_field.player.name
-                =button_to '<-', user_team_player_path(player_on_football_field,user_team_player:{first_team:false}),method: :put, class:"btn btn-default"
+                -if can? :manage, @user_team
+                  =button_to '<-', user_team_player_path(player_on_football_field,user_team_player:{first_team:false}),method: :put, class:"btn btn-default"
       .row
         .col-md12.bordered.player
           GK
           -if @first_team_goalkeeper
             =@first_team_goalkeeper.name
-            =button_to '<-', user_team_player_path(@first_team_goalkeeper,user_team_player:{first_team:false}),method: :put, class:"btn btn-default"
+            -if can? :manage, @user_team
+              =button_to '<-', user_team_player_path(@first_team_goalkeeper,user_team_player:{first_team:false}),method: :put, class:"btn btn-default"
       .row
         .col-md-12
           =form_for @user_team do |f|
