@@ -12,7 +12,7 @@
 require 'rails_helper'
 require 'database_cleaner'
 
-DatabaseCleaner.strategy = :truncation
+# DatabaseCleaner.strategy = :truncation
 
 RSpec.describe UserTeamPlayer, :type => :model do
   describe 'before_create checks' do

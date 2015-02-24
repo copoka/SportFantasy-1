@@ -24,7 +24,7 @@ RSpec.describe PlayersController, :type => :controller do
   # Player. As you add validations to Player, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.attributes_for :player
   }
 
   let(:invalid_attributes) {
@@ -37,10 +37,57 @@ RSpec.describe PlayersController, :type => :controller do
   let(:valid_session) { {} }
 
   describe "GET index" do
+    # not necessary, it just for prevent error from   @user_team=current_user.user_teams.first if current_user
+    login_user
+
+    before(:all) { DatabaseCleaner.start; DatabaseCleaner.clean }
+    after(:all) { DatabaseCleaner.clean }
+
+    let!(:team_1) { FactoryGirl.create :real_team_with_players, players_count: 3 }
+    let!(:team_2) { FactoryGirl.create :real_team_with_players, players_count: 3 }
+
     it "assigns all players as @players" do
-      player = Player.create! valid_attributes
+      # player = Player.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:players)).to eq([player])
+      # expect(assigns(:players)).to eq(Player.last 20)
+      expect(assigns(:players).to_a).to eq(Player.all.order(:name).to_a)
+    end
+
+    describe 'Filtering' do
+      it '@players should be from team_1.players only' do
+        get :index, real_team_id: team_1.id
+        expect(assigns(:players).to_a).to eq(team_1.players.order(:name).to_a)
+      end
+      it '@players should be from team_2.players only' do
+        get :index, real_team_id: team_2.id
+        expect(assigns(:players).to_a).to eq(team_2.players.order(:name).to_a)
+      end
+    end
+
+    describe 'Sorting' do
+      it 'sort by real_teams.name' do
+        get :index, sort: 'real_teams.name'
+        expect(assigns(:players).to_a).to eq(Player.all.includes(:real_team).order('real_teams.name').to_a)
+      end
+
+      it 'sort by ampluas.name' do
+        get :index, sort: 'ampluas.name'
+        expect(assigns(:players).to_a).to eq(Player.all.includes(:amplua).order('ampluas.name').to_a)
+      end
+    end
+
+    # TODO make it green
+    describe 'Filtering and sorting together' do
+      it '@players should be from team_1.players only and sort by ampluas.name' do
+        pending
+        get :index, {real_team_id: team_1.id, sort: 'ampluas.name'}
+        expect(assigns(:players).to_a).to eq(team_1.players.includes(:amplua).order('ampluas.name').to_a)
+      end
+      it '@players should be from team_2.players only and sort by ampluas.name' do
+        pending
+        get :index, {real_team_id: team_2.id, sort: 'ampluas.name'}
+        expect(assigns(:players).to_a).to eq(team_2.players.order('ampluas.name').to_a)
+      end
     end
   end
 
