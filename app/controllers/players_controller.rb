@@ -5,8 +5,10 @@ class PlayersController < ApplicationController
   # GET /players.json
   def index
     @user_team=current_user.user_teams.first if current_user
+
+    # search by real team
     @real_teams=RealTeam.all
-    @real_teams.unshift RealTeam.new({id: 0, name: '*'})
+    @real_teams.unshift RealTeam.new({id: 0, name: '*'}) # search by all team
 
     @real_team_id = params[:real_team_id].to_i
     if @real_team_id==0
@@ -16,7 +18,7 @@ class PlayersController < ApplicationController
       @players = RealTeam.find(@real_team_id).players.order(sort_column)
     end
     # @players.order!(sort_column)
-    logger.info "sorted by #{sort_column}"
+    # logger.info "sorted by #{sort_column}"
   end
 
   # GET /players/1
@@ -81,21 +83,22 @@ class PlayersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def player_params
-    params.require(:player).permit(:name, :real_team_id, :amplua_id, :price, :score)
+    params.require(:player).permit(:name, :amplua_id, :price, :score)
   end
 
+  # TODO extract to application helper helper
   def sort_column
     return 'name' if !params[:sort] || params[:sort].empty?
     return params[:sort] if  Player.column_names.include?(params[:sort])
-    model, field = params[:sort].split '.'
+    association_name, field = params[:sort].split '.'
 
     #get Player association, exml: model=real_teams association=RealTeam
-    association=Player.reflect_on_all_associations(:belongs_to).select { |association| association.plural_name==model }
+    association=Player.reflect_on_all_associations(:belongs_to).select { |association| association.plural_name==association_name }
     return 'name' if association.empty?
 
     # klass = RealTeam
     klass=association[0].name.to_s.camelize.constantize
-    return params[:sort] if klass.column_names.include?(params[:sort]) ? params[:sort] : 'name'
+    return klass.column_names.include?(field) ? params[:sort] : 'name'
   end
 
   # def sort_direction
